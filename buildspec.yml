@@ -19,4 +19,4 @@ artifacts:
    files:
       - appspec.yml
    discard-paths: no
-   base-directory: frontend/Frontend/build
+   base-directory: Frontend/build

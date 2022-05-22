@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: frontend/Frontend/build/*
+  - source: /build/*
     destination: /var/www/frontend
     file_exists_behavior: OVERWRITE
 hooks:

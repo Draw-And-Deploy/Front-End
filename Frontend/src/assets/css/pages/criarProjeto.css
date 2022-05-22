@@ -16,13 +16,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .imgProjeto {
     height: 130px;
     width: 130px;
     /* background-color: gray; */
-    margin: 2rem 0 0 0;
+    margin-bottom: 16px;
 }
 
 .formArea {
@@ -35,8 +36,9 @@
     font-size: 1.5rem;
     font-family: 'Roboto';
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    margin-bottom: 32px;
 }
 
 .titulo h6 {
@@ -70,6 +72,7 @@
 .input {
     font-family: 'Roboto-Mono';
     width: 278px;
+    border-radius: 12px;
     border: solid 1px black;
     font-size: 1rem;
     padding-left: 1rem;
@@ -78,6 +81,7 @@
 }
 
 .btnProxU {
+    border-radius: 12px;
     align-self: end;
     font-size: 1rem;
     font-family: 'Roboto';
@@ -86,20 +90,32 @@
     background-color: var(--cor-primaria);
     margin-top: 2rem;
     padding: 8px 12px 8px 12px;
-    box-shadow: var(--shadow)
+    box-shadow: var(--shadow);
+    width: 120px;
+    background-color: #5995fd;
+    border: none;
+    outline: none;
+    height: 49px;
+
 }
+
 .btnProxUX {
+    border-radius: 12px;
     align-self: end;
     font-size: 1rem;
     font-family: 'Roboto';
     font-weight: bold;
     color: white;
-    background-color: red;
+    background-color: var(--cor-primaria);
     margin-top: 2rem;
     padding: 8px 12px 8px 12px;
     box-shadow: var(--shadow);
-    cursor: pointer;
-    
+    width: 120px;
+    background-color: red;
+    border: none;
+    outline: none;
+    height: 49px;
+
 }
 
 .botoes {
@@ -107,6 +123,7 @@
     display: flex;
     justify-content: space-between;
     margin-top: 2rem;
+    border-radius: 12px;
 }
 
 .btnProx {
@@ -118,7 +135,8 @@
     background-color: var(--cor-primaria);
     /* margin-top: 2rem; */
     padding: 8px 12px 8px 12px;
-    box-shadow: var(--shadow)
+    box-shadow: var(--shadow);
+    border-radius: 12px;
 }
 
 .btnVoltar {
@@ -132,17 +150,18 @@
     box-shadow: var(--shadow)
 }
 
-.form_dividido{
+.form_dividido {
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
 
-.protocolo{
+.protocolo {
     display: flex;
     flex-direction: column;
 }
-.porta{
+
+.porta {
     display: flex;
     flex-direction: column;
 }

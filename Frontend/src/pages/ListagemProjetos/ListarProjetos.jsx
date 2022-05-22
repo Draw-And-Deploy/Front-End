@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import '../../UserPool'
 import axios from "axios";
 import Header from '../../components/header/header';
+import File_icon from '../../assets/img/File_Img.svg'
 import Modal from "react-modal";
 import { useNavigate } from 'react-router-dom';
 Modal.setAppElement("#root");
@@ -144,7 +145,7 @@ function TelaProjetos() {
                 <input type="text" placeholder="tenantId" value={tenantId} onChange={(evt) => setTenantId(evt.target.value)} />
 
                 <button type='submit' onClick={CredenciaisUser}>Entrar</button>
-                <button className="M_P_Button" value="sdas" type='submit' onClick={cadastrarProjetos}>Criar Novo Projeto</button>
+                <button className="M_P_Button" value="sdas" type='submit'  onClick={cadastrarProjetos}>Criar Novo Projeto</button>
                 <input type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)} />
                 <input type="text" placeholder="Nome do Projeto" value={project_name} onChange={(evt) => setNomeprojeto(evt.target.value)} />
 
@@ -170,7 +171,7 @@ function TelaProjetos() {
                                 return (
                                     <div className="conteiner_Projeto">
                                         <div className="Left">
-                                            <img src="img/File_Img.svg" alt="" />
+                                            <img src={File_icon} alt="" />
                                             <p>{project_name}</p>
                                         </div>
                                         <div className="Right">

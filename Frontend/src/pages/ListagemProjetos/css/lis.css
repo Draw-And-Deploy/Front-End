@@ -1,43 +1,49 @@
-*{
+* {
     margin: 0;
     box-sizing: border-box;
     padding: 0;
 }
 
-.M_P_Header{
-    background-color:#0188DF;
+.M_P_Header {
+    background-color: #0188DF;
     width: 100%;
     height: 96px;
     display: flex;
 }
-.M_P_Header .M_P_Left{
- height: 100%;
- width: 50%;
- display: flex;
- align-items: center;
+
+.M_P_Header .M_P_Left {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
 }
-.M_P_Header .M_P_Left img{
+
+.M_P_Header .M_P_Left img {
     width: 15%;
     margin-left: 17%;
 }
-.M_P_Header .M_P_Right{
+
+.M_P_Header .M_P_Right {
     width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: end;
 }
-.M_P_Header .M_P_Right img{
+
+.M_P_Header .M_P_Right img {
     margin-right: 19%;
-    width: 6%;
+    width: 7%;
 }
-.M_P_conteiner{
+
+.M_P_conteiner {
     width: 80%;
     height: 1000px;
     margin-left: 10%;
     margin-right: 10%;
 }
-.M_P_Button{
+
+.M_P_Button {
     width: 21%;
     background-color: #0188DF;
     border: none;
@@ -54,10 +60,12 @@
     margin-top: 10%;
     border-radius: 25px;
 }
-.M_P_Button:hover{
+
+.M_P_Button:hover {
     background-color: #0e73b6;
 }
-.Meus_proje_Area{
+
+.Meus_proje_Area {
     width: 100%;
     height: 100%;
     margin-top: 1%;
@@ -66,57 +74,76 @@
     border-radius: 25px;
 
 }
-.Meus_proje_Area .conteiner{
+
+.Meus_proje_Area .conteiner {
     margin-left: 6%;
     margin-right: 6%;
     width: 88%;
     height: 100%;
 }
-.Meus_proje_Area .conteiner h1{
+
+.Meus_proje_Area .conteiner h1 {
     font-family: 'Open Sans';
     color: #0188DF;
     margin-top: 4%;
-    
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
-.Meus_proje_Area .conteiner .conteiner_Projeto{
+
+.Meus_proje_Area .conteiner .conteiner_Projeto {
     width: 100%;
     height: 105px;
     border: 1px solid #000000;
     box-sizing: border-box;
     display: flex;
-    margin-top: 2.5%;
     border-radius: 25px;
+    margin-top: 2.5%;
 }
-.Meus_proje_Area .conteiner .conteiner_Projeto .Left{
+
+.Meus_proje_Area .conteiner .conteiner_Projeto .Left {
     height: 100%;
     width: 50%;
-   
+
     display: flex;
     align-content: center;
     align-items: center;
 }
-.Meus_proje_Area .conteiner .conteiner_Projeto .Left p{
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 33px;
-  color: #000000
+
+.Meus_proje_Area .conteiner .conteiner_Projeto .Left p {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000
 }
-.Meus_proje_Area .conteiner .conteiner_Projeto .Left img{
+
+.Meus_proje_Area .conteiner .conteiner_Projeto .Left img {
     margin-left: 10%;
     margin-right: 5%;
 }
-.Meus_proje_Area .conteiner .conteiner_Projeto .Right{
+
+.Meus_proje_Area .conteiner .conteiner_Projeto .Right {
     height: 100%;
     width: 50%;
     display: flex;
     align-content: center;
     align-items: center;
     justify-content: end;
+
 }
-.Meus_proje_Area .conteiner .conteiner_Projeto .Right button{
+
+.Modal_Box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400;
+    border: 1.5px solid #000;
+    border-radius: 10%;
+    padding: 7%;
+}
+
+.Meus_proje_Area .conteiner .conteiner_Projeto .Right button {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -127,10 +154,66 @@
     width: 137px;
     height: 51px;
     border: none;
+    border-radius: 25px;
     outline: none;
     background: #0188DF;
-    border-radius: 25px;
 }
-.Meus_proje_Area .conteiner .conteiner_Projeto .Right .Btn_Vermelho{
+
+.Meus_proje_Area .conteiner .conteiner_Projeto .Right .Btn_Vermelho {
     background: #FF0101;
+}
+
+/* Modal_Box */
+/* Normal user */
+/* user_email: Email_Aws,
+    //              user_password: Senha_Aws,
+                   /* //   Normal user */
+
+/* Student */
+/* subscription_id: subcripitionId,
+    //             client_id: clientId,
+    //             client_secret: Client_Secret,
+    //             tenant_id: tenantId */
+/* Student */
+.Container_Modal {
+    width: 500px;
+
+}
+
+.input_field {
+    border-radius: 92px;
+    width: 55%;
+}
+
+.Container_Modal .input_field {
+    margin-bottom: 5%;
+}
+
+.Conta_E {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5%;
+    margin-top: 4%;
+}
+
+.Conta_E hr {
+    width: 26%;
+    height: 1px;
+    display: flex;
+    color: #0059ffb7 ;
+}
+
+.Conta_E p {
+    margin-left: 1%;
+    margin-right: 1%;
+    color: #1d4e97 ;
+    cursor: pointer;
+}
+.Conta_E p:hover{
+    color: #0059ff;
+}
+
+#modal-modal-title {
+    border-bottom: 1px solid rgb(0, 0, 0);
+    margin-bottom: 13%;
 }

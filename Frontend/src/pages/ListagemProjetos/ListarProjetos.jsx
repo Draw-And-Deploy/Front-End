@@ -1,19 +1,36 @@
+import * as React from 'react';
 import '../ListagemProjetos/css/lis.css'
-import { useState, useEffect } from "react"
-import '../../UserPool'
-import axios from "axios";
-import Header from '../../components/header/header';
-import File_icon from '../../assets/img/File_Img.svg'
-import Modal from "react-modal";
-import { useNavigate } from 'react-router-dom';
-Modal.setAppElement("#root");
+import { useState,useEffect } from "react"
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
+import axios from 'axios'
+import Header from '../../components/header/header.jsx';
+import { useNavigate } from "react-router-dom"
+import File_Img from "../../assets/img/file-solid_1.svg"
 
+
+
+const style = {
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+};
 
 function TelaProjetos() {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+
     const [ListaProjetos, setListaProjetos] = useState([""])
     const [Excluir, setExcluir] = useState('')
     const [username, setUsername] = useState('Carlos');
     const [project_name, setNomeprojeto] = useState('sas');
+
+
+    const [student, setStudent] = useState(true)
 
 
 
@@ -102,23 +119,23 @@ function TelaProjetos() {
                     console.log("projeto cadastrado");
                     setUsername([]);
                     setNomeprojeto([]);
-                    navigate('/criar_recursos', { state: {message: 'Projeto criado com sucesso!'} })
+                    navigate('/criar_recursos', { state: { message: 'Projeto criado com sucesso!' } })
                 }
             }).catch(erro => console.log(erro))
     }
 
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        axios.delete("http://35.174.249.35:8000/api/delete_project/"+ username + "/" + project_name + "/",
+        axios.delete("http://35.174.249.35:8000/api/delete_project/" + username + "/" + project_name + "/",
             // {
             //     username: username,
             //     project_name: project_name   
             // }, 
             {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-        })
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+                }
+            })
             .then(resposta => {
                 if (resposta.status === 200) {
                     console.log('projeto deletado');
@@ -133,35 +150,79 @@ function TelaProjetos() {
         navigate('/criar_recursos')
 
     }
+    const Set_Student = () => {
+        setStudent(false)
+    }
+    const Set_Azure = () => {
+        setStudent(true)
+    }
 
     return (
         <>
             <div className="M.conteiner"></div>
             <Header />
             <div className="M_P_conteiner">
-                <input type="text" placeholder="subcripitionId" value={subcripitionId} onChange={(evt) => setSubcripitionId(evt.target.value)} />
-                <input type="text" placeholder="clientId" value={clientId} onChange={(evt) => setClientId(evt.target.value)} />
-                <input type="text" placeholder="Client_Secret" value={Client_Secret} onChange={(evt) => setClient_Secret(evt.target.value)} />
-                <input type="text" placeholder="tenantId" value={tenantId} onChange={(evt) => setTenantId(evt.target.value)} />
+                <button className="M_P_Button" value="sdas" onClick={handleOpen} >Criar Novo Projeto</button>
 
-                <button type='submit' onClick={CredenciaisUser}>Entrar</button>
-                <button className="M_P_Button" value="sdas" type='submit'  onClick={cadastrarProjetos}>Criar Novo Projeto</button>
-                <input type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)} />
-                <input type="text" placeholder="Nome do Projeto" value={project_name} onChange={(evt) => setNomeprojeto(evt.target.value)} />
-
-                {/* <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    contentLabel="Example Modal"
-                    overlayClassName="modal-overlay"
-                    className="modal-content"
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
                 >
-                    <h2>Cadastro de Projeto</h2>
-                    <input></input>
-                    <input></input>
-                    <button>Cadastrar</button>
-                    <button onClick={closeModal}>Close</button>
-                </Modal> */}
+                    {
+                        (
+                            student ?
+                                <Box className='Modal_Box' sx={style}>
+                                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                                        Credenciais de Usuario (Conta Azure)
+                                    </Typography>
+
+                                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                        <div className='Container_Modal'>
+                                            <TextField className="input_field" id="filled-basic" label="Email Azure" variant="filled" />
+                                            <TextField className="input_field" id="filled-basic" label="Senha Azure" variant="filled" />
+                                            <div className='Conta_E'>
+                                                <hr />
+                                                <p onClick={Set_Student}>Tem uma conta de estudante ?</p>
+                                                <hr />
+                                            </div>
+                                        </div>
+                                        <div className="btn-group">
+                                            <input type="submit" className="btn" value="Cadastrar" />
+                                        </div>
+                                    </Typography>
+                                </Box>
+                                :
+
+                                <Box className='Modal_Box' sx={style}>
+                                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                                        Credenciais de Usuario (Conta de estudante)
+                                    </Typography>
+
+                                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                        <div className='Container_Modal'>
+                                            <TextField className="input_field" id="filled-basic" label="Subcripition Id" variant="filled" />
+                                            <TextField className="input_field" id="filled-basic" label="Client Id" variant="filled" />
+                                            <TextField className="input_field" id="filled-basic" label="Client Secret" variant="filled" />
+                                            <TextField className="input_field" id="filled-basic" label="Tenant Id" variant="filled" />
+                                            <div className='Conta_E'>
+                                                <hr />
+                                                <p onClick={Set_Azure}>Tem uma conta de estudante ?</p>
+                                                <hr />
+                                            </div>
+                                        </div>
+                                        <div className="btn-group">
+                                            <input type="submit" className="btn" value="Cadastrar" />
+                                        </div>
+                                    </Typography>
+                                </Box>
+                        )
+                    }
+
+
+
+                </Modal>
                 <div className="Meus_proje_Area">
                     {/* <img src="" alt="" /> */}
                     <div className="conteiner">
@@ -171,7 +232,7 @@ function TelaProjetos() {
                                 return (
                                     <div className="conteiner_Projeto">
                                         <div className="Left">
-                                            <img src={File_icon} alt="" />
+                                            <img src={File_Img} alt="" />
                                             <p>{project_name}</p>
                                         </div>
                                         <div className="Right">

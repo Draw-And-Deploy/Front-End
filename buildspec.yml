@@ -20,4 +20,4 @@ artifacts:
       - '**/*'
       - appspec.yml
    discard-paths: no
-   base-directory: "/var/www/frontend/*"
+   base-directory: "Frontend/build"

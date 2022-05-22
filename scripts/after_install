@@ -1,2 +1,2 @@
 #!bin/bash/
-cp -R /var/www/frontend/* /var/www/html/
+cp -R /home/ubuntu/app/* /var/www/html/

@@ -3,5 +3,8 @@ set -e
 apt update -y
 sudo apt install -y nginx
 
-rm -R  /var/www/html/*
 touch /var/www/html/frontend
+rm -R  /var/www/html/*
+touch /var/www/html/frontend2
+
+ls -l /var/www/html/

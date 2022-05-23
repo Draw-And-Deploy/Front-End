@@ -4,12 +4,12 @@ run-as: root
 phases:
   install:
     commands:
-      - sudo yum install nodejs -y
-      - sudo yum install npm -y
+      - sudo apt install nodejs -y
+      - sudo apt install npm -y
   pre_build:
     commands:
       - cd Frontend
-      - curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
+      - node -v || curl -sL https://deb.nodesource.com/setup_14.x | sudo bash - && apt -y install nodejs
   build:
     commands:
       - npm install

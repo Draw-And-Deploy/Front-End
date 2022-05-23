@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '../ListagemProjetos/css/lis.css'
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -24,10 +24,15 @@ function TelaProjetos() {
     const handleClose = () => setOpen(false);
 
 
+    const [Open_Modal_Credenciais, setOpen_Modal_Credenciais] = React.useState(false);
+    const CredenciaishandleOpen = () => setOpen_Modal_Credenciais(true);
+    const CredenciaishandleClose = () => setOpen_Modal_Credenciais(false);
+
+
     const [ListaProjetos, setListaProjetos] = useState([""])
     const [Excluir, setExcluir] = useState('')
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('sas');
+    const [project_name, setNomeprojeto] = useState('teste2');
 
 
     const [student, setStudent] = useState(true)
@@ -48,10 +53,15 @@ function TelaProjetos() {
     const NavegateCreate = useNavigate();
 
 
+    useEffect(() => {
+        CredenciaishandleOpen();
+    }, [])
 
 
     function CredenciaisUser(evento) {
+
         evento.preventDefault();
+        CredenciaishandleClose();
         axios.post("http://35.174.249.35:8000/api/account_credentials/", {
 
             useracc: {
@@ -105,6 +115,7 @@ function TelaProjetos() {
     useEffect(buscarMeusProjetos, [], "");
 
     function cadastrarProjetos(evento) {
+        handleClose()
         evento.preventDefault();
         axios.post("http://35.174.249.35:8000/api/create_project/", {
             username: username,
@@ -119,7 +130,7 @@ function TelaProjetos() {
                     console.log("projeto cadastrado");
                     setUsername([]);
                     setNomeprojeto([]);
-                    navigate('/criar_recursos', { state: { message: 'Projeto criado com sucesso!' } })
+                    // navigate('/criar_recursos', { state: { message: 'Projeto criado com sucesso!' } })
                 }
             }).catch(erro => console.log(erro))
     }
@@ -163,10 +174,36 @@ function TelaProjetos() {
             <Header />
             <div className="M_P_conteiner">
                 <button className="M_P_Button" value="sdas" onClick={handleOpen} >Criar Novo Projeto</button>
-
+                {/* Modal Creação de projetos */}
                 <Modal
                     open={open}
                     onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <Box className='Modal_Box' sx={style}>
+                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                            Cadastrar Projeto
+                        </Typography>
+
+                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            <div className="Container_Modal">
+                                <TextField className="input_field" id="filled-basic" label="User Name" value={username} onChange={(evt) => setUsername(evt.target.value)}></TextField>
+                                <TextField className="input_field" id="filled-basic" label="Nome do Projeto" value={project_name} onChange={(evt) => setNomeprojeto(evt.target.value)}></TextField>
+                                <div className="Conta_E">
+                                    <div className="btn-group">
+                                        <input onClick={cadastrarProjetos} type="submit" className="btn" value="Cadastrar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </Typography>
+                    </Box>
+
+
+                    {/* Modal cadastrar Credenciais */}
+                </Modal>
+                <Modal
+                    open={Open_Modal_Credenciais}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
                 >
@@ -189,7 +226,7 @@ function TelaProjetos() {
                                             </div>
                                         </div>
                                         <div className="btn-group">
-                                            <input type="submit" className="btn" value="Cadastrar" />
+                                            <input onClick={CredenciaisUser} type="submit" className="btn" value="Cadastrar" />
                                         </div>
                                     </Typography>
                                 </Box>
@@ -208,12 +245,12 @@ function TelaProjetos() {
                                             <TextField className="input_field" id="filled-basic" label="Tenant Id" variant="filled" />
                                             <div className='Conta_E'>
                                                 <hr />
-                                                <p onClick={Set_Azure}>Tem uma conta de estudante ?</p>
+                                                <p onClick={Set_Azure}>Tem uma Azure ?</p>
                                                 <hr />
                                             </div>
                                         </div>
                                         <div className="btn-group">
-                                            <input type="submit" className="btn" value="Cadastrar" />
+                                            <input onClick={CredenciaisUser} type="submit" className="btn" value="Cadastrar" />
                                         </div>
                                     </Typography>
                                 </Box>

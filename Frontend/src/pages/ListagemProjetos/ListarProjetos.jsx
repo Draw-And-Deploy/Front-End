@@ -236,7 +236,7 @@ function TelaProjetos() {
                                             <p>{project_name}</p>
                                         </div>
                                         <div className="Right">
-                                            <button onClick={Navigate}>Editar</button>
+                                            <button className='Btn_Editar' onClick={Navigate}>Editar</button>
                                             <button className="Btn_Vermelho" onClick={DeletarProjeto}>Excluir</button>
                                         </div>
                                     </div>

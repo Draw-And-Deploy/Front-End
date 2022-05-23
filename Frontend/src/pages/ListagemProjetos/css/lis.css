@@ -157,11 +157,17 @@
     border-radius: 25px;
     outline: none;
     background: #0188DF;
+    cursor: pointer;
 }
 
 .Meus_proje_Area .conteiner .conteiner_Projeto .Right .Btn_Vermelho {
     background: #FF0101;
+    cursor: pointer;
 }
+ .Btn_Editar {
+    cursor: pointer;
+}
+
 
 /* Modal_Box */
 /* Normal user */

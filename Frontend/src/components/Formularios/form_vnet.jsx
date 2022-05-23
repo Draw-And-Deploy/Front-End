@@ -129,21 +129,22 @@ export default function Form_VNET() {
                         <h6>Redes Virtuais</h6>
                     </div>
                     <form method='post'>
-                        <label className="label" for="selecionaGR">Grupo de Recurso <strong>*</strong></label>
-                        <TextField id="selecionaGR" className="input inputText" list="listaGR" placeholder="Nome do Grupo de Recursos"
+                        <label className="label" for="selecionaGR"></label>
+                        <TextField id="selecionaGR" className="input_field" label='Grupo de Recurso' list="listaGR" placeholder="Nome do Grupo de Recursos"
                             // placeholder={{ nomeGR } ? { nomeGR } : "Selecionar GR"} 
                             value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
                         <datalist id="listaGR">
                             <option value={nomeGR} />
                         </datalist>
 
-                        <label className="label" for="nomeRede">Nome da Rede Virtual <strong>*</strong></label>
-                        <TextField id="nomeRede" className="input inputText" type="text" placeholder="Insira o nome da Rede" value={nomeRede} onChange={(event) => setNomeRede(event.target.value)} />
-                        <label className="label" for="blocoIP">Bloco de IPs <strong>*</strong></label>
+                        <label className="label" for="nomeRede"></label>
+                        <TextField id="nomeRede" className="input_field" label='Nome da Rede Virtual ' type="text" placeholder="Insira o nome da Rede" value={nomeRede} onChange={(event) => setNomeRede(event.target.value)} />
+                        <label className="label" for="blocoIP"></label>
                         <TextField
                             id="blocoIP"
                             select
-                            className="input inputText"
+                            label='Bloco de IPs'
+                            className="input_field"
                             // list="blocosIp"
                             type="text"
                             placeholder="000.000.000.000/00"
@@ -162,15 +163,16 @@ export default function Form_VNET() {
                             <h6>Subrede</h6>
                             <div className="linha" />
                         </div>
-                        <label className="label" for="nomeSubRede">Nome da Subrede</label>
-                        <TextField id="nomeSubRede" className="input inputText" type="text" placeholder="Insira o nome da Subede" value={nomeSubRede} onChange={(event) => setNomeSubRede(event.target.value)} />
-                        <label className="label" for="selecionaRede">Anexar à Rede Virtual </label>
-                        <TextField id="selecionaRede" className="input inputText" type="text" placeholder="Insira o nome da Rede" value={nomeRede} onChange={(event) => setNomeRede(event.target.value)} />
-                        <label className="label" for="blocoIPSubrede">Bloco de IPs da Subrede</label>
+                        <label className="label" for="nomeSubRede"></label>
+                        <TextField id="nomeSubRede" className="input_field" label='Nome da Subrede' type="text" placeholder="Insira o nome da Subede" value={nomeSubRede} onChange={(event) => setNomeSubRede(event.target.value)} />
+                        <label className="label" for="selecionaRede"> </label>
+                        <TextField id="selecionaRede" className="input_field" label='Anexar à Rede Virtual' type="text" placeholder="Insira o nome da Rede" value={nomeRede} onChange={(event) => setNomeRede(event.target.value)} />
+                        <label className="label" for="blocoIPSubrede"></label>
                         <TextField
                             id="blocoIPSubrede"
                             select
-                            className="input inputText"
+                            label='Bloco de IPs da Subrede'
+                            className="input_field"
                             type="text"
                             laceholder="000.000.000.000/00"
                             value={blocoIPSubrede} onChange={(event) => setBlocoIPSubrede(event.target.value)}>

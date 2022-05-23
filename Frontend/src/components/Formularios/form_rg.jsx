@@ -62,10 +62,10 @@ export default function Form_RG() {
                     {/* <div className="linha" /> */}
                 </div>
                 <form method='post' onSubmit={cadastrarRGroup}>
-                    <label className="label" for="nomeGR">Grupo de Recurso <strong>*</strong></label>
-                    <TextField id="nomeGR" className="input_field" type="text" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} autoFocus required />
-                    <label className="label" for="regiao">Região <strong>*</strong></label>
-                    <TextField id="regiao" className="input_field" list="region" placeholder="Escolha uma Região" value={regiao} onChange={(event) => setRegiao(event.target.value)} />
+                    <label className="label" for="nomeGR"></label>
+                    <TextField id="nomeGR" className="input_field" label='Grupo de Recurso' type="text" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} autoFocus required />
+                    <label className="label" for="regiao"></label>
+                    <TextField id="regiao" className="input_field" label='Região' list="region" placeholder="Escolha uma Região" value={regiao} onChange={(event) => setRegiao(event.target.value)} />
                     <datalist id="regions">
                         <option value={nomeGR} />
                     </datalist>

@@ -29,7 +29,7 @@ const tamanhos = [
 ];
 
 
-export default function Form_VM() {
+export default function Form_VMW() {
     const [nomeGR, setNomeGR] = useState('');
     const [username, setUsername] = useState('Carlos');
     const [project_name, setNomeprojeto] = useState('teste');
@@ -70,7 +70,7 @@ export default function Form_VM() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
-                    console.log('VM cadastrada');
+                    console.log('VMW cadastrada');
                     setNomeVM('');
                     setNomeGR(nomeGR);
                     setNomeSeguranca(nomeSeguranca);
@@ -145,19 +145,20 @@ export default function Form_VM() {
                         <h6>Virtual Machine</h6>
                     </div>
                     <form method='post'>
-                        <label className="label" for="selecionaGR_VM">Grupo de Recurso <strong>*</strong></label>
-                        <TextField id="selecionaGR_VM" className="input_field" list="listaGR" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
-                        <label className="label" for="selecionaGS_VM">Grupo de Segurança <strong>*</strong></label>
-                        <TextField id="selecionaGS_VM" className="input_field" list="listaGS" placeholder="Insira o nome do GS" value={nomeSeguranca} onChange={(event) => setNomeSeguranca(event.target.value)} />
-                        <label className="label" for="nomeSubRede">Nome da Subrede</label>
-                        <TextField id="nomeSubRede" className="input_field" type="text" placeholder="Insira o nome da Subede" value={nomeSubRede} onChange={(event) => setNomeSubRede(event.target.value)} />
-                        <label className="label" for="nomeVM">Nome da Máquina Virtual <strong>*</strong></label>
-                        <TextField id="nomeVM" className="input_field" placeholder="Insira o nome da VM" value={nomeVM} onChange={(event) => setNomeVM(event.target.value)} />
-                        <label className="label" for="tamanhoVM">Tamanho da VM</label>
+                        <label className="label" for="selecionaGR_VM"></label>
+                        <TextField id="selecionaGR_VM" className="input_field" label="Grupo de Recurso" list="listaGR" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
+                        <label className="label" for="selecionaGS_VM"></label>
+                        <TextField id="selecionaGS_VM" className="input_field" label="Grupo de Segurança" list="listaGS" placeholder="Insira o nome do GS" value={nomeSeguranca} onChange={(event) => setNomeSeguranca(event.target.value)} />
+                        <label className="label" for="nomeSubRede"></label>
+                        <TextField id="nomeSubRede" className="input_field" label='Nome da Subrede' type="text" placeholder="Insira o nome da Subede" value={nomeSubRede} onChange={(event) => setNomeSubRede(event.target.value)} />
+                        <label className="label" for="nomeVM"></label>
+                        <TextField id="nomeVM" className="input_field" label='Nome da Máquina Virtual ' placeholder="Insira o nome da VM" value={nomeVM} onChange={(event) => setNomeVM(event.target.value)} />
+                        <label className="label" for="tamanhoVM"></label>
                         <TextField
                             id="tamanhoVM"
                             select
                             className="input_field"
+                            label='Tamanho da VM'
                             type="text"
                             placeholder="Escolha o tamanho da VM"
                             value={tamanhoVM} onChange={(event) => setTamanhoVM(event.target.value)}>
@@ -168,12 +169,12 @@ export default function Form_VM() {
                             ))}
                         </TextField>
 
-                        <label className="label" for="userName">Nome do Usuário</label>
-                        <TextField id="userName" className="input_field" type="text" placeholder="Insira o nome do Usuário" value={usuario} onChange={(event) => setUsuario(event.target.value)} />
-                        <label className="label" for="senha">Senha do Usuário</label>
-                        <TextField id="senha" className="inputfield" type="password" placeholder="Insira a Senha do Usuário" value={senha} onChange={(event) => setSenha(event.target.value)} />
-                        <label className="label" for="hostname">Hostname</label>
-                        <TextField id="hostname" className="inputfield" type="text" placeholder="Insira o Hostname da VM" value={hostname} onChange={(event) => setHostname(event.target.value)} />
+                        <label className="label" for="userName"></label>
+                        <TextField id="userName" className="input_field" label='Nome do Usuário' type="text" placeholder="Insira o nome do Usuário" value={usuario} onChange={(event) => setUsuario(event.target.value)} />
+                        <label className="label" for="senha"></label>
+                        <TextField id="senha" className="inputfield" label='Senha do Usuário' type="password" placeholder="Insira a Senha do Usuário" value={senha} onChange={(event) => setSenha(event.target.value)} />
+                        <label className="label" for="hostname"></label>
+                        <TextField id="hostname" className="inputfield" label='Hostname' type="text" placeholder="Insira o Hostname da VM" value={hostname} onChange={(event) => setHostname(event.target.value)} />
                         <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineWindows} />
 
                     </form>

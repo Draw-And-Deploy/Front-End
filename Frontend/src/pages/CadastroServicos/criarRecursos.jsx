@@ -7,20 +7,21 @@ import Header from '../../components/header/header'
 import '../../assets/css/pages/criarProjeto.css'
 
 //imgs
-import iconVM from '../../assets/img/computer-solid.svg'
-import RGImg from '../../assets/img/resource-group-img.svg'
-// import VM from '../../assets/img/vm-scale-set.svg'
-import iconNet from '../../assets/img/wifi.svg'
-import Net1 from '../../assets/img/image28.svg'
-import Net2 from '../../assets/img/router-xxl.svg'
-import iconScript from '../../assets/img/scriptIcon.svg'
-import securityIcon from '../../assets/img/security-group-img.svg'
-import VM from '../../assets/img/virtual-machine-img.svg'
-import { TextField } from '@mui/material';
+// import iconVM from '../../assets/img/computer-solid.svg'
+// import RGImg from '../../assets/img/resource-group-img.svg'
+// // import VM from '../../assets/img/vm-scale-set.svg'
+// import iconNet from '../../assets/img/wifi.svg'
+// import Net1 from '../../assets/img/image28.svg'
+// import Net2 from '../../assets/img/router-xxl.svg'
+// import iconScript from '../../assets/img/scriptIcon.svg'
+// import securityIcon from '../../assets/img/security-group-img.svg'
+// import VM from '../../assets/img/virtual-machine-img.svg'
+// import { TextField } from '@mui/material';
 import Form_RG from '../../components/Formularios/form_rg';
 import Form_VNET from '../../components/Formularios/form_vnet';
 import Form_SG from '../../components/Formularios/form_sg';
-import Form_VM from '../../components/Formularios/form_vm';
+import Form_VMW from '../../components/Formularios/form_vmw';
+import Form_VML from '../../components/Formularios/form_vml';
 
 
 export default function CriarRecurso() {
@@ -90,7 +91,10 @@ export default function CriarRecurso() {
                         <Form_SG />
                     </div>
                     <div>
-                        <Form_VM />
+                        <Form_VMW/>
+                    </div>
+                    <div>
+                        <Form_VML />
                     </div>
                     <div className='div_apply'>
                         <div>

@@ -163,7 +163,7 @@ function Login() {
                 <li>Uma letra maiúscula</li>
                 <li>Um número</li>
               </p>
-              <input type="submit" className="btn" value="Sign up" />
+              <button type="submit" className="btn" value="Sign up" />
               
             </form>
           </div>

@@ -135,16 +135,17 @@ export default function Form_SG() {
                         <h6>Grupo de Segurança</h6>
                     </div>
                     <form method='post'>
-                        <label className="label" for="selecionaGR_GS">Grupo de Recurso <strong>*</strong></label>
-                        <TextField id="selecionaGR_GS" className="input inputText" list="listaGR" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
-                        <label className="label" for="grupoSeguranca">Nome do Grupo de Segurança <strong>*</strong></label>
-                        <TextField id="grupoSeguranca" className="input inputText" placeholder="Insira o nome do GS" value={nomeSeguranca} onChange={(event) => setNomeSeguranca(event.target.value)} />
+                        <label className="label" for="selecionaGR_GS"></label>
+                        <TextField id="selecionaGR_GS" className="input inputText" label='Grupo de Recurso' list="listaGR" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
+                        <label className="label" for="grupoSeguranca"></label>
+                        <TextField id="grupoSeguranca" className="input inputText" label='Nome do Grupo de Segurança ' placeholder="Insira o nome do GS" value={nomeSeguranca} onChange={(event) => setNomeSeguranca(event.target.value)} />
                         <div className='form_dividido'>
                             <div className='protocolo'>
-                                <label className="label" for="protocolo">Protocolo <strong>*</strong></label>
+                                <label className="label" for="protocolo"></label>
                                 <TextField
                                     id="protocolo"
                                     select
+                                    label='Protocolo'
                                     className="input inputText"
                                     style={{ width: 135 }}
                                     type="text"
@@ -158,10 +159,11 @@ export default function Form_SG() {
                                 </TextField>
                             </div>
                             <div className='porta'>
-                                <label className="label" for="porta">Porta <strong>*</strong></label>
+                                <label className="label" for="porta"></label>
                                 <TextField
                                     id="porta"
                                     select
+                                    label='Porta'
                                     className="input_field"
                                     style={{ width: 135 }}
                                     type="text" list="portasList"
@@ -176,10 +178,11 @@ export default function Form_SG() {
 
                             </div>
                         </div>
-                        <label className="label" for="prioridade">Prioridade<strong>*</strong></label>
+                        <label className="label" for="prioridade"></label>
                         <TextField
                             id="prioridade"
                             select
+                            label='Prioridades'
                             className="input_field"
                             type="text"
                             placeholder="Informe a Prioridade"
@@ -190,10 +193,11 @@ export default function Form_SG() {
                                 </MenuItem>
                             ))}
                         </TextField>
-                        <label className="label" for="blocoIPSeguranca">Origem do Tráfego <strong>*</strong></label>
+                        <label className="label" for="blocoIPSeguranca"></label>
                         <TextField
                             id="blocoIPSeguranca"
                             className="input inputText"
+                            label='Origem do Tráfego'
                             type="text"
                             placeholder="000.000.000.000/00"
                             value={trafegoOrigem} onChange={(event) => setTrafegoOrigem(event.target.value)} />

@@ -4,8 +4,8 @@ run-as: root
 phases:
   install:
     commands:
-      - sudo apt install nodejs -y
-      - sudo apt install npm -y
+      - apt install nodejs -y
+      - apt install npm -y
   pre_build:
     commands:
       - cd Frontend

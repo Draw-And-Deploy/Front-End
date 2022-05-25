@@ -1,12 +1,12 @@
 version: 0.0
 os: linux
 files:
-  - source: Frontend/build
-  destination: /var/www/frontend
+  - source: /
+    destination: /var/www/frontend
   file_exists_behavior: OVERWRITE
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies.sh
+    - location: scripts/before_install.sh
       timeout: 300
       runas: root
   AfterInstall:

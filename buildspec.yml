@@ -8,7 +8,7 @@ phases:
       - sudo yum install npm -y
   pre_build:
     commands:
-      - cd Frontend
+      - cd frontend
       - curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
   build:
     commands:
@@ -21,4 +21,4 @@ artifacts:
       - '**/*'
       - appspec.yml
    discard-paths: no
-   base-directory: "Frontend/build"
+   base-directory: "frontend/build"

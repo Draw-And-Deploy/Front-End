@@ -4,8 +4,8 @@ run-as: root
 phases:
   install:
     commands:
-      - sudo yum install nodejs -y
-      - sudo yum install npm -y
+      - yum install nodejs -y
+      - yum install npm -y
   pre_build:
     commands:
       - cd frontend

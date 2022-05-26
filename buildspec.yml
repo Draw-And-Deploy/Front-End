@@ -19,7 +19,7 @@ phases:
       
 artifacts:
    files:
-      - '**/*'
+      - 'build/**/*'
       - appspec.yml
    discard-paths: no
-   base-directory: "frontend/build"
+   base-directory: "frontend/"

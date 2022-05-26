@@ -19,6 +19,7 @@ phases:
   post_build:
     commands:
       - cd ../
+      - chmod +x scripts/*.sh
       - sed -i -e 's/\r$//' scripts/*.sh
 
 artifacts:

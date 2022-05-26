@@ -9,29 +9,57 @@ import img_login from '../../assets/img/logo_black.svg'
 import img_login2 from '../../assets/img/undraw_cloud_files_wmo8.svg'
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css'; 
+import 'react-toastify/dist/ReactToastify.min.css';
 import axios from "axios";
 // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 // import {faCoffee} from '@fortawesome/free-solid-svg-icons'
+import IconButton from "@material-ui/core/IconButton";
+// import InputLabel from "@material-ui/core/InputLabel";
+import Visibility from "@material-ui/icons/Visibility";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Input from "@material-ui/core/Input";
+import { styled } from '@mui/material/styles';
+
 
 
 function Login() {
 
   const [Email, setEmail] = useState('')
-  const [Senha, setSenha] = useState('')
   const [username, setUsername] = useState('')
   const [loading, setLoading] = useState(false)
   const [Animaition, setAnimaition] = useState(false);
   const navigate = useNavigate();
 
 
+
+  const [values, setValues] = useState({
+    password: "",
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
+
+  
+
   const Cadastrar = (event) => {
     event.preventDefault();
-
+    setAnimaition(true);
+    // setUsername(true)
     axios.post("http://54.165.113.191:8080/api/create_user/", {
       username: username
-      // username: username,
-      // project_name: project_name
+      
     }, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -41,12 +69,11 @@ function Login() {
         if (resposta.status === 201) {
           console.log("User cadastrado");
           setUsername("");
-          // setUsername([]);
-          // setNomeprojeto([]);
+          
         }
       }).catch(erro => console.log(erro))
 
-    UserPool.signUp(Email, Senha, [{
+    UserPool.signUp(Email, values.password, [{
       Name: 'custom:username',
       Value: username
     }], null, (err, data) => {
@@ -55,15 +82,16 @@ function Login() {
         toast.error("Cadastro não efetuado corretamente!")
         console.error(err)
       } else {
-
+        toast.success("c")
         console.log(data)
         setEmail('')
-        setSenha('')
+        
         setUsername('')
         setLoading(false)
 
 
       }
+      
     })
   };
 
@@ -78,7 +106,7 @@ function Login() {
 
     const authDetails = new AuthenticationDetails({
       Username: Email,
-      Password: Senha,
+      Password: values.password,
     });
 
     user.authenticateUser(authDetails, {
@@ -98,7 +126,7 @@ function Login() {
         setLoading(false)
         // navigate("/main")
         console.log("newPasswordRequired: ", data);
-    },
+      },
 
 
     });
@@ -116,6 +144,9 @@ function Login() {
   };
 
 
+
+
+
   return (
     <>
       <div className={Animaition ? 'container sign-up-mode' : 'container '}   >
@@ -129,16 +160,32 @@ function Login() {
               </div>
               <div className="input-field">
                 <i className="fas fa-lock"></i>
-                <input type="password" placeholder="Senha" value={Senha} onChange={(evt) => setSenha(evt.target.value)} />
+                <Input
+                  type={values.showPassword ? "text" : "password"}
+                  onChange={handlePasswordChange("password")}
+                  value={values.password}
+                  disableUnderline
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
               </div>
-              
+
               {
-                loading === true && <button type="submit" className="btn solid">Login</button> 
+                loading === true && <button type="submit" className="btn solid">Login</button>
               }
               {
-                loading === false && <button type="submit"  className="btn solid" onClick={EfetuarLogin}>Login</button>
+                loading === false && <button type="submit" className="btn solid" onClick={EfetuarLogin}>Login</button>
               }
-              <ToastContainer/>
+              <ToastContainer />
             </form>
             <form action="#" className="sign-up-form" onSubmit={Cadastrar} >
               <h2 className="title">Cadastrar-se</h2>
@@ -154,8 +201,23 @@ function Login() {
               </div>
               <div className="input-field">
                 <i className="fas fa-lock"></i>
-                <input
-                  type="password" placeholder="Senha" value={Senha} onChange={(evt) => setSenha(evt.target.value)} />
+                <Input
+                  type={values.showPassword ? "text" : "password"}
+                  onChange={handlePasswordChange("password")}
+                  value={values.password}
+                  disableUnderline
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />  
               </div>
               <p className="social-text">
                 <li>8 caracteres</li>
@@ -163,8 +225,8 @@ function Login() {
                 <li>Uma letra maiúscula</li>
                 <li>Um número</li>
               </p>
-              <input type="submit" className="btn" value="Sign up" />
-              
+              <input type="submit" className="btn" value="Cadastrar" onClick={Cadastrar}/>
+
             </form>
           </div>
         </div>
@@ -173,7 +235,7 @@ function Login() {
           <div className="panel left-panel">
             <div className="content">
               <h3>Novo aqui ?</h3>
-              <p>          
+              <p>
                 Cadastre seu usuário para começar a realizar seus projetos!
               </p>
               <button onClick={addClass} className='btn transparent' id="sign-up-btn">

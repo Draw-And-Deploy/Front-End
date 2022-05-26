@@ -11,15 +11,22 @@ import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 // import {faCoffee} from '@fortawesome/free-solid-svg-icons'
 
 
+//MANIPULAR O CUSTOM ATRIBUTE DO COGNITO
+// localStorage.setItem('username', Userdata["custom:username"] );
+
+
 function Login() {
 
+  
   const [Email, setEmail] = useState('')
   const [Senha, setSenha] = useState('')
   const [username, setUsername] = useState('')
+  const  [Jwt_Decode, jwt7]= useState('')
   const [loading, setLoading] = useState(false)
   const [Animaition, setAnimaition] = useState(false);
   const navigate = useNavigate();
@@ -38,7 +45,7 @@ function Login() {
       }
     })
       .then(resposta => {
-        if (resposta.status === 201) {
+        if (resposta.status === 200) {
           console.log("User cadastrado");
           setUsername("");
           // setUsername([]);
@@ -81,9 +88,13 @@ function Login() {
       Password: Senha,
     });
 
-    user.authenticateUser(authDetails, {
+    user.authenticateUser(authDetails,  {
       onSuccess: (data) => {
-        localStorage.setItem('usuario-login', data.getIdToken().getJwtToken());
+        let Userdata = jwt_decode(data.getIdToken().getJwtToken());
+        localStorage.setItem('email', Userdata.email );
+        localStorage.setItem('username', Userdata["custom:username"] );
+        // console.log( jwt_decode(data.getIdToken().getJwtToken()))
+
         navigate("/meus_projetos")
         console.log("onSuccess: ", data);
         setLoading(true)
@@ -163,7 +174,7 @@ function Login() {
                 <li>Uma letra maiúscula</li>
                 <li>Um número</li>
               </p>
-              <button type="submit" className="btn" value="Sign up" />
+              <input type="submit" className="btn" onClick={Cadastrar} value="Sign up" />
               
             </form>
           </div>

@@ -10,6 +10,7 @@ import axios from 'axios'
 import Header from '../../components/header/header.jsx';
 import { useNavigate } from "react-router-dom"
 import File_Img from "../../assets/img/file-solid_1.svg"
+import jwtDecode from 'jwt-decode';
 
 
 
@@ -27,7 +28,7 @@ function TelaProjetos() {
     const [ListaProjetos, setListaProjetos] = useState([""])
     const [Excluir, setExcluir] = useState('')
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('sas');
+    const [project_name, setNomeprojeto] = useState('');
 
 
     const [student, setStudent] = useState(true)
@@ -42,10 +43,11 @@ function TelaProjetos() {
     const [tenantId, setTenantId] = useState('')
     const [Email_Aws, setEmail_Aws] = useState('')
     const [Senha_Aws, setSenha_Aws] = useState('')
-    const [UserName, setUserName] = useState('Carlos')
-    const [ProjeteName, setProjeteName] = useState('teste2')
+    const [UserName, setUserName] = useState('')
+    // const [ProjeteName, setProjeteName] = useState('')
     const navigate = useNavigate();
     const NavegateCreate = useNavigate();
+    const JWT_Decode= useState();
 
 
 
@@ -63,8 +65,8 @@ function TelaProjetos() {
                 tenant_id: tenantId
             },
             project: {
-                username: UserName,
-                project_name: ProjeteName
+                username: localStorage.getItem("username"),
+                project_name: project_name
             }
         }, {
             headers: {
@@ -72,7 +74,7 @@ function TelaProjetos() {
             }
         })
             .then(resposta => {
-                if (resposta.status === 201) {
+                if (resposta.status === 200) {
                     console.log('Cre_DAS_TRA_DO');
                     setUserName('');
                     setProjeteName('');

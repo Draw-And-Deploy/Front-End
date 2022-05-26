@@ -18,9 +18,8 @@ phases:
       - npm run build
   post_build:
     commands:
-      - sed -i -e 's/\r$//' scripts/before_install.sh
-      - sed -i -e 's/\r$//' scripts/after_install.sh
-      - sed -i -e 's/\r$//' scripts/start_server.sh
+      - cd ../
+      - sed -i -e 's/\r$//' scripts/*.sh
 
 artifacts:
    files:

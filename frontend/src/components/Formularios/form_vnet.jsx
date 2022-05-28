@@ -6,6 +6,8 @@ import { TextField } from '@mui/material';
 import Net1 from '../../assets/img/image28.svg'
 import { MenuItem } from '@mui/material';
 import Banner_form from '../../assets/img/banner_form.svg'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 const blocosIp = [
@@ -59,7 +61,7 @@ export default function Form_VNET() {
                 cidr_block: blocoIP,
             },
             project: {
-                username: username,
+                username: localStorage.getItem("username"),
                 project_name: project_name
             }
         }, {

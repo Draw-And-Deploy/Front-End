@@ -22,6 +22,8 @@ import Form_VNET from '../../components/Formularios/form_vnet';
 import Form_SG from '../../components/Formularios/form_sg';
 import Form_VMW from '../../components/Formularios/form_vmw';
 import Form_VML from '../../components/Formularios/form_vml';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 export default function CriarRecurso() {
@@ -35,7 +37,7 @@ export default function CriarRecurso() {
     function Apply(evento) {
         evento.preventDefault();
         axios.post("http://35.174.249.35:8000/api/apply/", {
-            username: username,
+            username: localStorage.getItem("username"),
             project_name: project_name
         }, {
             headers: {
@@ -52,7 +54,7 @@ export default function CriarRecurso() {
     }
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        axios.delete("http://35.174.249.35:8000/api/destroy/" + username + "/" + project_name + "/",
+        axios.delete("http://35.174.249.35:8000/api/destroy/" + localStorage.getItem("username") + "/" + project_name + "/",
             // {
             //     username: username,
             //     project_name: project_name   

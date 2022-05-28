@@ -43,7 +43,7 @@ function TelaProjetos() {
     const [tenantId, setTenantId] = useState('')
     const [Email_Aws, setEmail_Aws] = useState('')
     const [Senha_Aws, setSenha_Aws] = useState('')
-    const [UserName, setUserName] = useState('')
+    // const [UserName, setUserName] = useState('')
     // const [ProjeteName, setProjeteName] = useState('')
     const navigate = useNavigate();
     const NavegateCreate = useNavigate();
@@ -76,8 +76,8 @@ function TelaProjetos() {
             .then(resposta => {
                 if (resposta.status === 200) {
                     console.log('Cre_DAS_TRA_DO');
-                    setUserName('');
-                    setProjeteName('');
+                    setUsername('');
+                    setNomeprojeto('');
                     // setNomeRede('');
                     // setNomeGR('');
                     // setUsername('');
@@ -90,7 +90,7 @@ function TelaProjetos() {
 
     // ///////////////////////////////////////////////////////////////////////////////////////
     function buscarMeusProjetos() {
-        axios.get("http://35.174.249.35:8000/api/get_projects/" + username, {
+        axios.get("http://35.174.249.35:8000/api/get_projects/" + localStorage.getItem("username"), {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -109,7 +109,7 @@ function TelaProjetos() {
     function cadastrarProjetos(evento) {
         evento.preventDefault();
         axios.post("http://35.174.249.35:8000/api/create_project/", {
-            username: username,
+            username: localStorage.getItem("username"),
             project_name: project_name
         }, {
             headers: {
@@ -128,7 +128,7 @@ function TelaProjetos() {
 
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        axios.delete("http://35.174.249.35:8000/api/delete_project/" + username + "/" + project_name + "/",
+        axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
             // {
             //     username: username,
             //     project_name: project_name   
@@ -165,7 +165,6 @@ function TelaProjetos() {
             <Header />
             <div className="M_P_conteiner">
                 <button className="M_P_Button" value="sdas" onClick={handleOpen} >Criar Novo Projeto</button>
-
                 <Modal
                     open={open}
                     onClose={handleClose}

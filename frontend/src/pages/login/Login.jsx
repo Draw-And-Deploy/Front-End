@@ -59,15 +59,16 @@ function Login() {
     }], null, (err, data) => {
       if (err) {
         setLoading(false)
-        toast.error("Cadastro não efetuado corretamente!")
+        toast.error("Erro no cadastro! Revise seus dados!")
         console.error(err)
       } else {
-
+        toast.success("Usuário cadastrado com sucesso!")
         console.log(data)
         setEmail('')
         setSenha('')
         setUsername('')
         setLoading(false)
+
 
 
       }
@@ -95,7 +96,8 @@ function Login() {
         localStorage.setItem('username', Userdata["custom:username"] );
         // console.log( jwt_decode(data.getIdToken().getJwtToken()))
 
-        navigate("/meus_projetos")
+        // navigate("/meus_projetos")
+        navigate("/criar_recursos")
         console.log("onSuccess: ", data);
         setLoading(true)
       },
@@ -154,7 +156,7 @@ function Login() {
             <form action="#" className="sign-up-form" onSubmit={Cadastrar} >
               <h2 className="title">Cadastrar-se</h2>
               <div className="input-field">
-                <i className="fas fa-envelope"></i>
+                <i className='fas fa-envelope'></i>
                 <input
                   type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)} />
               </div>
@@ -175,7 +177,7 @@ function Login() {
                 <li>Um número</li>
               </p>
               <input type="submit" className="btn" onClick={Cadastrar} value="Sign up" />
-              
+              <ToastContainer/>
             </form>
           </div>
         </div>

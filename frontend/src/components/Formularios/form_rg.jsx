@@ -5,6 +5,8 @@ import RGImg from '../../assets/img/resource-group-img.svg'
 import '../../assets/css/components/forms.css'
 import Banner_form from '../../assets/img/banner_form.svg'
 import { TextField } from '@mui/material';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export default function Form_RG() {
     const [nomeGR, setNomeGR] = useState('');
@@ -22,7 +24,7 @@ export default function Form_RG() {
                 location: regiao
             },
             project: {
-                username: username,
+                username: localStorage.getItem("username"),
                 project_name: project_name
             }
 

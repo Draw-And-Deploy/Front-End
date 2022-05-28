@@ -6,6 +6,8 @@ import '../../assets/css/pages/criarProjeto.css'
 import '../../assets/css/components/forms.css'
 import VM from '../../assets/img/virtual-machine-img.svg'
 import Banner_form from '../../assets/img/banner_form.svg'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 
@@ -59,7 +61,7 @@ export default function Form_VML() {
                 username: user_name,
             },
             project: {
-                username: username,
+                username: localStorage.getItem("username"),
                 project_name: project_name
             }
 

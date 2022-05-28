@@ -7,6 +7,8 @@ import '../../assets/css/components/forms.css'
 import securityIcon from '../../assets/img/security-group-img.svg'
 import Logo from '../../assets/img/cloud_Main.svg'
 import Banner_form from '../../assets/img/banner_form.svg'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 
 
@@ -88,7 +90,7 @@ export default function Form_SG() {
                 // rule_dest_address_prefix: "*"
             },
             project: {
-                username: username,
+                username: localStorage.getItem("username"),
                 project_name: project_name
             }
 

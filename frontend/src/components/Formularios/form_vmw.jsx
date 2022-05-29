@@ -72,6 +72,7 @@ export default function Form_VMW() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    toast.success("Virtual Machine Windows cadastrada com sucesso!")
                     console.log('VMW cadastrada');
                     setNomeVM('');
                     setNomeGR(nomeGR);
@@ -178,7 +179,7 @@ export default function Form_VMW() {
                         <label className="label" for="hostname"></label>
                         <TextField id="hostname" className="inputfield" label='Hostname' type="text" placeholder="Insira o Hostname da VM" value={hostname} onChange={(event) => setHostname(event.target.value)} />
                         <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineWindows} />
-
+                        <ToastContainer/>
                     </form>
                 </div>
 

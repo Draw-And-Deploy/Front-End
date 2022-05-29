@@ -72,6 +72,7 @@ export default function Form_VML() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    toast.success("Virtual Machine Linux cadastrada com sucesso!")
                     console.log('VM cadastrada');
                     setNomeVM('');
                     setNomeGR(nomeGR);
@@ -175,6 +176,7 @@ export default function Form_VML() {
                         <TextField id="userName" className="input_field" label='Nome do Usuário' type="text" placeholder="Insira o nome do Usuário" value={usuario} onChange={(event) => setUsuario(event.target.value)} />
                         <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineLinux} />
 
+                        <ToastContainer/>
                     </form>
                 </div>
 

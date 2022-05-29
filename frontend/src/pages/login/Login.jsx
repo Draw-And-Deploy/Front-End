@@ -12,8 +12,14 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css'; 
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-// import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-// import {faCoffee} from '@fortawesome/free-solid-svg-icons'
+import { IconButton } from '@mui/material';
+// import InputLabel from "@material-ui/core/InputLabel";
+import { Visibility } from '@mui/icons-material';
+import { InputAdornment } from '@mui/material';
+import { VisibilityOff } from '@mui/icons-material';
+import { Input } from '@mui/material';
+import { styled } from '@mui/material/styles';
+
 
 
 //MANIPULAR O CUSTOM ATRIBUTE DO COGNITO
@@ -30,6 +36,27 @@ function Login() {
   const [loading, setLoading] = useState(false)
   const [Animaition, setAnimaition] = useState(false);
   const navigate = useNavigate();
+
+
+
+
+  const [values, setValues] = useState({
+    password: Senha,
+    showPassword: false,
+  });
+
+  const handleClickShowPassword = () => {
+    setValues({ ...values, showPassword: !values.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handlePasswordChange = (prop) => (event) => {
+    setValues({ ...values, [prop]: event.target.value });
+  };
+
 
 
   const Cadastrar = (event) => {
@@ -53,7 +80,7 @@ function Login() {
         }
       }).catch(erro => console.log(erro))
 
-    UserPool.signUp(Email, Senha, [{
+    UserPool.signUp(Email, values.password, [{
       Name: 'custom:username',
       Value: username
     }], null, (err, data) => {
@@ -63,6 +90,7 @@ function Login() {
         console.error(err)
       } else {
         toast.success("Usuário cadastrado com sucesso!")
+        toast.success("Um email de verificação foi enviado para o seu email! Verifique para poder realizar o login!")
         console.log(data)
         setEmail('')
         setSenha('')
@@ -86,7 +114,7 @@ function Login() {
 
     const authDetails = new AuthenticationDetails({
       Username: Email,
-      Password: Senha,
+      Password: values.password,
     });
 
     user.authenticateUser(authDetails,  {
@@ -137,12 +165,29 @@ function Login() {
             <form action="#" className="sign-in-form" onSubmit={EfetuarLogin}>
               <h2 className="title">Login</h2>
               <div className="input-field ">
-                <i className="fas fa-user"></i>
+                <i className="fas fa-envelope"></i>
                 <input type="text" placeholder="Email" value={Email} onChange={(evt) => setEmail(evt.target.value)} />
               </div>
               <div className="input-field">
                 <i className="fas fa-lock"></i>
-                <input type="password" placeholder="Senha" value={Senha} onChange={(evt) => setSenha(evt.target.value)} />
+                <Input
+                  placeholder='Senha'
+                  type={values.showPassword ? "text" : "password"}
+                  onChange={handlePasswordChange("password")}
+                  value={values.password}
+                  disableUnderline
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
               </div>
               
               {
@@ -156,7 +201,7 @@ function Login() {
             <form action="#" className="sign-up-form" onSubmit={Cadastrar} >
               <h2 className="title">Cadastrar-se</h2>
               <div className="input-field">
-                <i className='fas fa-envelope'></i>
+                <i className='fas fa-user'></i>
                 <input
                   type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)} />
               </div>
@@ -167,8 +212,24 @@ function Login() {
               </div>
               <div className="input-field">
                 <i className="fas fa-lock"></i>
-                <input
-                  type="password" placeholder="Senha" value={Senha} onChange={(evt) => setSenha(evt.target.value)} />
+                <Input
+                  placeholder='Senha'
+                  type={values.showPassword ? "text" : "password"}
+                  onChange={handlePasswordChange("password")}
+                  value={values.password}
+                  disableUnderline
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />  
               </div>
               <p className="social-text">
                 <li>8 caracteres</li>

@@ -21,22 +21,22 @@ const blocosIp = [
     },
     {
         value: 'BTC',
-        label: '0.0.0.0/8',
+        label: '10.0.0.0/8',
     },
 ];
 
 const blocosIpsub = [
     {
-        value: 'USD',
+        value: '1',
         label: '192.168.0.0/24',
     },
     {
-        value: 'EUR',
+        value: '2',
         label: '172.16.0.0/24',
     },
     {
-        value: 'BTC',
-        label: '0.0.0.0/24',
+        value: '3',
+        label: '10.0.0.0/24',
     },
 ];
 
@@ -71,6 +71,7 @@ export default function Form_VNET() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    toast.success("Rede Virtual cadastrada com sucesso!")
                     console.log('vnet cadastrada');
                     setNomeRede(nomeRede);
                     setNomeGR(nomeGR);
@@ -103,6 +104,7 @@ export default function Form_VNET() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    toast.success("SubRede cadastrada com sucesso!")
                     console.log("SUBNET cadastrada");
                     setNomeGR(nomeGR);
                     setNomeRede(nomeRede);
@@ -185,6 +187,7 @@ export default function Form_VNET() {
                             ))}
                         </TextField>
                         <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarSubrede} />
+                        <ToastContainer/>
                     </form>
                 </div>
             </div>

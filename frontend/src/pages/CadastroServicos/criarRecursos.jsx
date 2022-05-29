@@ -46,6 +46,7 @@ export default function CriarRecurso() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    console.log(resposta.data)
                     console.log('apply feita com sucesso');
                     setUsername('');
                     setNomeprojeto('');

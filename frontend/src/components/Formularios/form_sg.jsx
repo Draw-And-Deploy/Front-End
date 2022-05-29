@@ -101,6 +101,7 @@ export default function Form_SG() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    toast.success("Grupo de Segurança cadastrado com sucesso!")
                     console.log('security group cadastrado');
                     setNomeSeguranca(nomeSeguranca);
                     setNomeGR(nomeGR);
@@ -205,6 +206,7 @@ export default function Form_SG() {
                             value={trafegoOrigem} onChange={(event) => setTrafegoOrigem(event.target.value)} />
                         {/* <input className="btnVoltar" type="submit" value="Voltar" /> */}
                         <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarGrupoSeguranca} />
+                        <ToastContainer/>
                     </form>
                 </div>
 

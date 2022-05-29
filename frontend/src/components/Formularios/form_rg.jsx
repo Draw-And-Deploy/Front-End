@@ -18,32 +18,35 @@ export default function Form_RG() {
     //RESOURCE GRUP
     function cadastrarRGroup(evento) {
         evento.preventDefault();
+        // 35.174.249.35:8000
         axios.post("http://35.174.249.35:8000/api/resource_group/", {
             rg: {
                 name: nomeGR,
                 location: regiao
             },
             project: {
-                username: localStorage.getItem("username"),
+                // localStorage.getItem("username")
+                username: username,
                 project_name: project_name
             }
 
         }, {
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+                'Authorization': 'Bearer ' + localStorage.getItem('username')
             }
         })
 
             .then(resposta => {
                 if (resposta.status === 200) {
                     // return({ message: 'Projeto criado com sucesso!' });
+                    toast.success("Grupo de Recurso cadastrado com sucesso!")
                     console.log('rg cadastrado');
                     setNomeGR(nomeGR);
                     setRegiao(regiao);
                     setUsername('');
                     setNomeprojeto('');
                 }
-            }).catch(erro => console.log(erro))
+            }).catch(erro => console.log(erro),)
     }
 
 
@@ -72,6 +75,7 @@ export default function Form_RG() {
                         <option value={nomeGR} />
                     </datalist>
                     <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarRGroup} />
+                    <ToastContainer/>
                 </form>
 
             </div>

@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-
 if [ ! -d /var/www/frontend ]; then
     mkdir -p /var/www/frontend
 else

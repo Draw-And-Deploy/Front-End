@@ -124,8 +124,8 @@ function Login() {
         localStorage.setItem('username', Userdata["custom:username"] );
         // console.log( jwt_decode(data.getIdToken().getJwtToken()))
 
-        // navigate("/meus_projetos")
-        navigate("/criar_recursos")
+        navigate("/meus_projetos")
+        // navigate("/criar_recursos")
         console.log("onSuccess: ", data);
         setLoading(true)
       },

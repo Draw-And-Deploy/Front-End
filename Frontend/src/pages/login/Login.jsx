@@ -1,4 +1,5 @@
 // import banner from "./pages/login/img/banner_login2.svg";
+import * as React from 'react';
 import '../../assets/css/pages/style.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
@@ -13,14 +14,13 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import axios from "axios";
 // import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 // import {faCoffee} from '@fortawesome/free-solid-svg-icons'
-import IconButton from "@material-ui/core/IconButton";
+import { IconButton } from '@mui/material';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 // import InputLabel from "@material-ui/core/InputLabel";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
-import { styled } from '@mui/material/styles';
-
 
 
 function Login() {
@@ -36,6 +36,7 @@ function Login() {
   const [values, setValues] = useState({
     password: "",
     showPassword: false,
+    
   });
 
   const handleClickShowPassword = () => {
@@ -51,7 +52,7 @@ function Login() {
   };
 
 
-  
+
 
   const Cadastrar = (event) => {
     event.preventDefault();
@@ -59,7 +60,7 @@ function Login() {
     // setUsername(true)
     axios.post("http://54.165.113.191:8080/api/create_user/", {
       username: username
-      
+
     }, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -69,7 +70,7 @@ function Login() {
         if (resposta.status === 201) {
           console.log("User cadastrado");
           setUsername("");
-          
+
         }
       }).catch(erro => console.log(erro))
 
@@ -85,13 +86,13 @@ function Login() {
         toast.success("c")
         console.log(data)
         setEmail('')
-        
+
         setUsername('')
         setLoading(false)
 
 
       }
-      
+
     })
   };
 
@@ -161,6 +162,7 @@ function Login() {
               <div className="input-field">
                 <i className="fas fa-lock"></i>
                 <Input
+                  placeholder="Senha"
                   type={values.showPassword ? "text" : "password"}
                   onChange={handlePasswordChange("password")}
                   value={values.password}
@@ -168,7 +170,6 @@ function Login() {
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
-
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -217,7 +218,7 @@ function Login() {
                       </IconButton>
                     </InputAdornment>
                   }
-                />  
+                />
               </div>
               <p className="social-text">
                 <li>8 caracteres</li>
@@ -225,7 +226,7 @@ function Login() {
                 <li>Uma letra maiúscula</li>
                 <li>Um número</li>
               </p>
-              <input type="submit" className="btn" value="Cadastrar" onClick={Cadastrar}/>
+              <input type="submit" className="btn" value="Cadastrar" onClick={Cadastrar} />
 
             </form>
           </div>

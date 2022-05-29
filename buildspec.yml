@@ -24,9 +24,7 @@ phases:
 
 artifacts:
    files:
-     - frontend/public/**/*
-     - frontend/src/**/*
-     - frontend/package.json
+     - frontend/build/**/*
      - appspec.yml
      - scripts/**/*
    discard-paths: no

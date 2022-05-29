@@ -8,4 +8,4 @@ else
 fi
 pwd
 echo "Copying files to /var/www/frontend/ directory"
-cp -r frontend/build/* /var/www/frontend/
+cp -r ./frontend/build/* /var/www/frontend/

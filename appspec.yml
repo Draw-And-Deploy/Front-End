@@ -3,7 +3,7 @@ version: 0.0
 os: linux
 files:
 - source: /frontend/build/*
-  destination: /var/www/frontend/
+  destination: /usr/share/nginx/html
   file_exists_behavior: OVERWRITE
 permissions:
   - object: /

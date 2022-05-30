@@ -15,44 +15,44 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 const portas = [
     {
-        value: 'USD',
+        value: '22',
         label: '22',
     },
     {
-        value: 'EUR',
+        value: '80',
         label: '80',
     },
     {
-        value: 'BTC',
+        value: '3309',
         label: '3309',
     },
     {
-        value: 'BTC',
+        value: '443',
         label: '443',
     },
 ];
 const prioridades = [
     {
-        value: 'USD',
+        value: '100',
         label: '100',
     },
     {
-        value: 'EUR',
+        value: '110',
         label: '110',
     },
     {
-        value: 'BTC',
+        value: '120',
         label: '120',
     },
 ];
 
 const protocolos = [
     {
-        value: 'USD',
+        value: 'TCP',
         label: 'TCP',
     },
     {
-        value: 'EUR',
+        value: 'UDP',
         label: 'UDP',
     },
 ];
@@ -62,7 +62,7 @@ const protocolos = [
 export default function Form_SG() {
     const [nomeGR, setNomeGR] = useState('');
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [project_name, setNomeprojeto] = useState('sustenta');
     const [nomeSeguranca, setNomeSeguranca] = useState('');
     const [trafegoOrigem, setTrafegoOrigem] = useState('0.0.0.0/0');
     const [protocolo, setProtocolo] = useState('');
@@ -74,7 +74,8 @@ export default function Form_SG() {
 
     function cadastrarGrupoSeguranca(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/security_group/", {
+        // axios.post("http://35.174.249.35:8000/api/security_group/", {
+        axios.post("http://localhost:8000/api/security_group/", {
 
             sg: {
                 name: nomeSeguranca,

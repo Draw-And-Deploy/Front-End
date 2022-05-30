@@ -13,19 +13,19 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 const tamanhos = [
     {
-        value: 'USD',
+        value: 'Standard_DS1_v2',
         label: 'Standard_DS1_v2',
     },
     {
-        value: 'EUR',
+        value: 'Standard_D2s_v3',
         label: 'Standard_D2s_v3',
     },
     {
-        value: 'BTC',
-        label: 'Standard_D4s_v3',
+        value: 'Standard_DS1_v2',
+        label: 'Standard_DS1_v2',
     },
     {
-        value: 'BTC',
+        value: 'Standard_E2s_v3',
         label: 'Standard_E2s_v3',
     },
 ];
@@ -34,7 +34,7 @@ const tamanhos = [
 export default function Form_VMW() {
     const [nomeGR, setNomeGR] = useState('');
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [project_name, setNomeprojeto] = useState('sustenta');
     const [nomeSeguranca, setNomeSeguranca] = useState('');
     const [senha, setSenha] = useState('');
     const [hostname, setHostname] = useState('');
@@ -48,7 +48,8 @@ export default function Form_VMW() {
     //VIRTUAL MACHINE
     function cadastrarVirtualMachineWindows(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/windows_virtual_machine/", {
+        // axios.post("http://35.174.249.35:8000/api/windows_virtual_machine/", {
+        axios.post("http://localhost:8000/api/windows_virtual_machine/", {
 
             vm: {
                 name: nomeVM,
@@ -90,7 +91,8 @@ export default function Form_VMW() {
 
     function Apply(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/apply/", {
+        // axios.post("http://35.174.249.35:8000/api/apply/", {
+        axios.post("http://localhost:8000/api/apply/", {
             username: username,
             project_name: project_name
         }, {

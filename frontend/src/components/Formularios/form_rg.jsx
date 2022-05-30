@@ -12,21 +12,22 @@ export default function Form_RG() {
     const [nomeGR, setNomeGR] = useState('');
     const [regiao, setRegiao] = useState('East US');
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [project_name, setNomeprojeto] = useState('sustenta');
 
 
     //RESOURCE GRUP
     function cadastrarRGroup(evento) {
         evento.preventDefault();
         // 35.174.249.35:8000
-        axios.post("http://35.174.249.35:8000/api/resource_group/", {
+        // axios.post("http://35.174.249.35:8000/api/resource_group/", {
+        axios.post("http://localhost:8000/api/resource_group/", {
             rg: {
                 name: nomeGR,
                 location: regiao
             },
             project: {
-                // localStorage.getItem("username")
-                username: username,
+                 
+                username: localStorage.getItem("username"),
                 project_name: project_name
             }
 

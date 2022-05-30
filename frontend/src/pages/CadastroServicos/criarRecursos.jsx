@@ -28,7 +28,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 export default function CriarRecurso() {
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [project_name, setNomeprojeto] = useState('sustenta');
 
 
 
@@ -36,7 +36,8 @@ export default function CriarRecurso() {
 
     function Apply(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/apply/", {
+        // axios.post("http://35.174.249.35:8000/api/apply/", {
+        axios.post("http://localhost:8000/api/apply/", {
             username: localStorage.getItem("username"),
             project_name: project_name
         }, {
@@ -55,7 +56,8 @@ export default function CriarRecurso() {
     }
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        axios.delete("http://35.174.249.35:8000/api/destroy/" + localStorage.getItem("username") + "/" + project_name + "/",
+        // axios.delete("http://35.174.249.35:8000/api/destroy/" + localStorage.getItem("username") + "/" + project_name + "/",
+        axios.delete("http://localhost:8000/api/destroy/" + localStorage.getItem("username") + "/" + project_name + "/",
             // {
             //     username: username,
             //     project_name: project_name   

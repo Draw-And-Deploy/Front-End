@@ -12,30 +12,30 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 const blocosIp = [
     {
-        value: 'USD',
+        value: '192.168.0.0/16',
         label: '192.168.0.0/16',
     },
     {
-        value: 'EUR',
+        value: '172.16.0.0/16',
         label: '172.16.0.0/16',
     },
     {
-        value: 'BTC',
+        value: '10.0.0.0/8',
         label: '10.0.0.0/8',
     },
 ];
 
 const blocosIpsub = [
     {
-        value: '1',
+        value: '192.168.0.0/24',
         label: '192.168.0.0/24',
     },
     {
-        value: '2',
+        value: '172.16.0.0/24',
         label: '172.16.0.0/24',
     },
     {
-        value: '3',
+        value: '10.0.0.0/24',
         label: '10.0.0.0/24',
     },
 ];
@@ -44,7 +44,7 @@ const blocosIpsub = [
 export default function Form_VNET() {
     const [nomeGR, setNomeGR] = useState('');
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [project_name, setNomeprojeto] = useState('sustenta');
     const [nomeRede, setNomeRede] = useState('');
     const [blocoIP, setBlocoIP] = useState('');
     const [nomeSubRede, setNomeSubRede] = useState('');
@@ -53,7 +53,8 @@ export default function Form_VNET() {
     //VIRTUAL NETWORK
     function cadastrarVnet(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/virtual_network/", {
+        // axios.post("http://35.174.249.35:8000/api/virtual_network/", {
+        axios.post("http://localhost:8000/api/virtual_network/", {
 
             vnet: {
                 name: nomeRede,
@@ -84,7 +85,8 @@ export default function Form_VNET() {
     //SUBNET
     function cadastrarSubrede(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/subnet/", {
+        // axios.post("http://35.174.249.35:8000/api/subnet/", {
+        axios.post("http://localhost:8000/api/subnet/", {
 
             subnet: {
                 name: nomeSubRede,

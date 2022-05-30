@@ -1,7 +1,0 @@
-#!/bin/bash
-set -e
-apt update -y
-sudo apt install -y nginx
-
-rm -R  /var/www/html/*
-touch /var/www/html/frontend

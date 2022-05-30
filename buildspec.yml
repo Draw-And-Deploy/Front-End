@@ -1,25 +1,30 @@
+---
 version: 0.2
 run-as: root
 
 phases:
   install:
     commands:
-      - sudo yum install nodejs -y
-      - sudo yum install npm -y
+      - yum install nodejs -y
+      - yum install npm -y
   pre_build:
     commands:
-      - cd Frontend
+      - cd frontend
       - curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
   build:
     commands:
       - npm install
+      - npm install web-vitals
       - npm run build
-      - exit
-      - pwd
-      
+  post_build:
+    commands:
+      - cd ../
+      - chmod +x scripts/*.sh
+      - sed -i -e 's/\r$//' scripts/*.sh
+
 artifacts:
    files:
-      - '**/*'
-      - appspec.yml
+     - frontend/build/**/*
+     - appspec.yml
+     - scripts/**/*
    discard-paths: no
-   base-directory: "Frontend/build"

@@ -1,0 +1,150 @@
+/* .modal{
+    background-color: white;
+    display: none;
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    left: 200px;
+    top: 40px;
+    color: black;
+} */
+.btn_WL {
+    display: flex;
+    justify-content: space-between;
+    width: 114%;
+}
+
+.Stage_form_RG {
+    background: #0188DF;
+    height: 560px;
+    width: 1088px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+}
+
+.Stage_form_VNET {
+    background: #0188DF;
+    height: 164vh;
+    width: 88vw;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 24%;
+    box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+}
+
+.Stage_form_SG {
+    background: #0188DF;
+    height: 164vh;
+    width: 88vw;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 24%;
+    box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+}
+
+.Stage_form_VM {
+    background: #0188DF;
+    height: 180vh;
+    width: 88vw;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 24%;
+    box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+}
+
+.right_stage {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+}
+
+.left_stage {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left_stage img {
+    width: 52vw;
+    height: 52vh;
+
+}
+
+.input_field {
+    border-radius: 92px;
+    width: 100%;
+}
+
+@media (max-width: 870px) {
+    .Stage_form_VM {
+        background: #0188DF;
+        height: 167vh;
+        width: 180%;
+        border-radius: 1px;
+        display: flex;
+        justify-content: center;
+        margin-top: 24%;
+        box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+    }
+
+    .Stage_form_RG {
+        background: #0188DF;
+        height: 560px;
+        width: 180%;
+        border-radius: 1px;
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+        box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+    }
+
+    .Stage_form_VNET {
+        background: #0188DF;
+        height: 164vh;
+        width: 180%;
+        border-radius: 1px;
+        display: flex;
+        justify-content: center;
+        margin-top: 24%;
+        box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+    }
+
+    .Stage_form_SG {
+        background: #0188DF;
+        height: 140vh;
+        width: 180%;
+        border-radius: 1px;
+        display: flex;
+        justify-content: center;
+        margin-top: 24%;
+        box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+    }
+
+    .imgProjeto img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .imgProjeto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left_stage img {
+        width: 86%;
+        height: 52vh;
+    }
+
+
+}

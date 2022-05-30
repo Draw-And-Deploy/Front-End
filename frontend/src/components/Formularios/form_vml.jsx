@@ -133,7 +133,7 @@ export default function Form_VML() {
     //     </MenuItem>
     // ))}
     return (
-        <div className='Stage_form_VM'>
+        <div className='Stage_form_VML'>
 
             <div className='left_stage'>
                 <img src={Banner_form} />

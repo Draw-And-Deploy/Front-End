@@ -1,6 +1,7 @@
 // import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
+import Modal from 'react-modal/lib/components/Modal';
 // Componentes
 import Header from '../../components/header/header'
 //css
@@ -29,6 +30,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 export default function CriarRecurso() {
     const [username, setUsername] = useState('Carlos');
     const [project_name, setNomeprojeto] = useState('sustenta');
+    const [URL, setURL] = useState({});
 
 
 
@@ -36,8 +38,8 @@ export default function CriarRecurso() {
 
     function Apply(evento) {
         evento.preventDefault();
-        // axios.post("http://35.174.249.35:8000/api/apply/", {
-        axios.post("http://localhost:8000/api/apply/", {
+        axios.post("http://35.174.249.35:8000/api/apply/", {
+            // axios.post("http://localhost:8000/api/apply/", {
             username: localStorage.getItem("username"),
             project_name: project_name
         }, {
@@ -47,7 +49,8 @@ export default function CriarRecurso() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
-                    console.log(resposta.data)
+
+                    setURL(resposta.data)
                     console.log('apply feita com sucesso');
                     setUsername('');
                     setNomeprojeto('');
@@ -69,6 +72,7 @@ export default function CriarRecurso() {
             })
             .then(resposta => {
                 if (resposta.status === 200) {
+
                     console.log('projeto deletado');
                     setUsername('');
                     setNomeprojeto('');
@@ -96,14 +100,23 @@ export default function CriarRecurso() {
                         <Form_SG />
                     </div>
                     <div>
-                        <Form_VMW/>
+                        <Form_VMW />
                     </div>
                     <div>
                         <Form_VML />
                     </div>
                     <div className='div_apply'>
+
+                        <div className='link_apply'>
+                            <div>
+                                <h7>Acesse seu link!</h7>
+                            </div>
+                            <span > <a href={URL.Link}> {URL.Link}</a> </span>
+                        </div>
                         <div>
                             <input className="btnProxU" type="submit" value="Apply" onClick={Apply} />
+                        </div>
+                        <div>
                             <input className="btnProxUX" type="submit" value="Deletar" onClick={DeletarProjeto} />
                         </div>
 

@@ -48,6 +48,7 @@ function TelaProjetos() {
     const [tenantId, setTenantId] = useState('')
     const [Email_Aws, setEmail_Aws] = useState('')
     const [Senha_Aws, setSenha_Aws] = useState('')
+
     // const [UserName, setUserName] = useState('')
     // const [ProjeteName, setProjeteName] = useState('')
     const navigate = useNavigate();
@@ -101,8 +102,8 @@ function TelaProjetos() {
 
     // ///////////////////////////////////////////////////////////////////////////////////////
     function buscarMeusProjetos() {
-        // axios.get("http://35.174.249.35:8000/api/get_projects/" + localStorage.getItem("username"), {
-        axios.get("http://localhost:8000/api/get_projects/" + localStorage.getItem("username"), {
+        axios.get("http://35.174.249.35:8000/api/get_projects/" + localStorage.getItem("username"), {
+        // axios.get("http://localhost:8000/api/get_projects/" + localStorage.getItem("username"), {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -121,8 +122,8 @@ function TelaProjetos() {
     function cadastrarProjetos(evento) {
         handleClose()
         evento.preventDefault();
-        // axios.post("http://35.174.249.35:8000/api/create_project/", {
-        axios.post("http://localhost:8000/api/create_project/", {
+        axios.post("http://35.174.249.35:8000/api/create_project/", {
+        // axios.post("http://localhost:8000/api/create_project/", {
             username: localStorage.getItem("username"),
             project_name: project_name
         }, {
@@ -142,8 +143,8 @@ function TelaProjetos() {
 
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        axios.delete("http://localhost:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
-        // axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
+        // axios.delete("http://localhost:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
+        axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
             // {
             //     username: username,
             //     project_name: project_name   
@@ -164,6 +165,8 @@ function TelaProjetos() {
 
     const Navigate = (event) => {
         event.preventDefault();
+        localStorage.getItem('nome-projeto')
+        localStorage.setItem('nome-projeto', project_name  );
         navigate('/criar_recursos')
 
     }

@@ -1,7 +1,9 @@
 // import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
-import Modal from 'react-modal/lib/components/Modal';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 // Componentes
 import Header from '../../components/header/header'
 //css
@@ -26,11 +28,16 @@ import Form_VML from '../../components/Formularios/form_vml';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
+const style = {
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+};
 
 export default function CriarRecurso() {
     const [username, setUsername] = useState('Carlos');
     const [project_name, setNomeprojeto] = useState('sustenta');
     const [URL, setURL] = useState({});
+
 
 
 
@@ -49,7 +56,6 @@ export default function CriarRecurso() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
-
                     setURL(resposta.data)
                     console.log('apply feita com sucesso');
                     setUsername('');
@@ -108,11 +114,9 @@ export default function CriarRecurso() {
                     <div className='div_apply'>
 
                         <div className='link_apply'>
-                            <div>
-                                <h7>Acesse seu link!</h7>
-                            </div>
                             <span > <a href={URL.Link}> {URL.Link}</a> </span>
                         </div>
+
                         <div>
                             <input className="btnProxU" type="submit" value="Apply" onClick={Apply} />
                         </div>

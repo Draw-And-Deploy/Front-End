@@ -35,7 +35,7 @@ const style = {
 
 export default function CriarRecurso() {
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('sustenta');
+    const [project_name, setNomeprojeto] = useState('querotever');
     const [URL, setURL] = useState({});
 
 
@@ -56,6 +56,7 @@ export default function CriarRecurso() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    toast.success(URL)
                     setURL(resposta.data)
                     console.log('apply feita com sucesso');
                     setUsername('');
@@ -99,28 +100,15 @@ export default function CriarRecurso() {
                         <Form_RG />
 
                     </div>
-                    <div>
-                        <Form_VNET />
-                    </div>
-                    <div>
-                        <Form_SG />
-                    </div>
-                    <div>
-                        <Form_VMW />
-                    </div>
-                    <div>
-                        <Form_VML />
-                    </div>
                     <div className='div_apply'>
-
                         <div className='link_apply'>
                             <span > <a href={URL.Link}> {URL.Link}</a> </span>
                         </div>
 
-                        <div>
+                        <div className='div_btn_apply'>
                             <input className="btnProxU" type="submit" value="Apply" onClick={Apply} />
                         </div>
-                        <div>
+                        <div className='div_btn_'>
                             <input className="btnProxUX" type="submit" value="Deletar" onClick={DeletarProjeto} />
                         </div>
 

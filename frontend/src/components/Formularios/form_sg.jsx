@@ -9,50 +9,50 @@ import Logo from '../../assets/img/cloud_Main.svg'
 import Banner_form from '../../assets/img/banner_form.svg'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-
+import Form_VNET from './form_vnet';
 
 
 
 const portas = [
     {
-        value: '22',
+        value: 'USD',
         label: '22',
     },
     {
-        value: '80',
+        value: 'EUR',
         label: '80',
     },
     {
-        value: '3309',
+        value: 'BTC',
         label: '3309',
     },
     {
-        value: '443',
+        value: 'BTC',
         label: '443',
     },
 ];
 const prioridades = [
     {
-        value: '100',
+        value: 'USD',
         label: '100',
     },
     {
-        value: '110',
+        value: 'EUR',
         label: '110',
     },
     {
-        value: '120',
+        value: 'BTC',
         label: '120',
     },
 ];
 
 const protocolos = [
     {
-        value: 'TCP',
+        value: 'USD',
         label: 'TCP',
     },
     {
-        value: 'UDP',
+        value: 'EUR',
         label: 'UDP',
     },
 ];
@@ -62,20 +62,27 @@ const protocolos = [
 export default function Form_SG() {
     const [nomeGR, setNomeGR] = useState('');
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('sustenta');
+    const [project_name, setNomeprojeto] = useState('teste');
     const [nomeSeguranca, setNomeSeguranca] = useState('');
     const [trafegoOrigem, setTrafegoOrigem] = useState('0.0.0.0/0');
     const [protocolo, setProtocolo] = useState('');
     const [porta, setPorta] = useState('');
     const [prioridade, setPrioridade] = useState('');
 
+    const [Form, setForm] = useState(0)
 
+    const FormDisplay = () => {
+        if (Form == 1) {
+            return <Form_VNET />
+        }
+    }
 
 
     function cadastrarGrupoSeguranca(evento) {
+        setForm((form) => form + 1)
+
         evento.preventDefault();
-        // axios.post("http://35.174.249.35:8000/api/security_group/", {
-        axios.post("http://localhost:8000/api/security_group/", {
+        axios.post("http://35.174.249.35:8000/api/security_group/", {
 
             sg: {
                 name: nomeSeguranca,
@@ -112,8 +119,7 @@ export default function Form_SG() {
                     setTrafegoOrigem('');
                     setUsername('');
                     setNomeprojeto('');
-
-
+                    
 
                 }
             }).catch(erro => console.log(erro))
@@ -125,93 +131,103 @@ export default function Form_SG() {
     //     </MenuItem>
     // ))}
     return (
-        <div className='Stage_form_SG'>
-
-            <div className='left_stage'>
-                <img src={Banner_form} />
-            </div>
-            <div className='right_stage'>
-                <div className="imgProjeto">
-                    <img src={securityIcon} />
-                </div>
-                <div>
-                    <div className="titulo">
-                        <h6>Grupo de Segurança</h6>
-                    </div>
-                    <form method='post'>
-                        <label className="label" for="selecionaGR_GS"></label>
-                        <TextField id="selecionaGR_GS" className="input inputText" label='Grupo de Recurso' list="listaGR" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
-                        <label className="label" for="grupoSeguranca"></label>
-                        <TextField id="grupoSeguranca" className="input inputText" label='Nome do Grupo de Segurança ' placeholder="Insira o nome do GS" value={nomeSeguranca} onChange={(event) => setNomeSeguranca(event.target.value)} />
-                        <div className='form_dividido'>
-                            <div className='protocolo'>
-                                <label className="label" for="protocolo"></label>
-                                <TextField
-                                    id="protocolo"
-                                    select
-                                    label='Protocolo'
-                                    className="input inputText"
-                                    style={{ width: 135 }}
-                                    type="text"
-                                    placeholder="Protocolo"
-                                    value={protocolo} onChange={(event) => setProtocolo(event.target.value)}>
-                                    {protocolos.map((option) => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+        <>
+            {
+                (
+                    Form == 1
+                        ?
+                        FormDisplay()
+                        :
+                        <div className='Stage_form_SG'>
+                            <div className='left_stage'>
+                                <img src={Banner_form} />
                             </div>
-                            <div className='porta'>
-                                <label className="label" for="porta"></label>
-                                <TextField
-                                    id="porta"
-                                    select
-                                    label='Porta'
-                                    className="input_field"
-                                    style={{ width: 135 }}
-                                    type="text" list="portasList"
-                                    placeholder="Insira a Porta"
-                                    value={porta} onChange={(event) => setPorta(event.target.value)}>
-                                    {portas.map((option) => (
-                                        <MenuItem key={option.value} value={option.value}>
-                                            {option.label}
-                                        </MenuItem>
-                                    ))}
-                                </TextField>
+                            <div className='right_stage'>
+                                <div className="imgProjeto">
+                                    <img src={securityIcon} />
+                                </div>
+                                <div>
+                                    <div className="titulo">
+                                        <h6>Grupo de Segurança</h6>
+                                    </div>
+                                    <form method='post'>
+                                        <label className="label" for="selecionaGR_GS"></label>
+                                        <TextField id="selecionaGR_GS" className="input inputText" label='Grupo de Recurso' list="listaGR" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
+                                        <label className="label" for="grupoSeguranca"></label>
+                                        <TextField id="grupoSeguranca" className="input inputText" label='Nome do Grupo de Segurança ' placeholder="Insira o nome do GS" value={nomeSeguranca} onChange={(event) => setNomeSeguranca(event.target.value)} />
+                                        <div className='form_dividido'>
+                                            <div className='protocolo'>
+                                                <label className="label" for="protocolo"></label>
+                                                <TextField
+                                                    id="protocolo"
+                                                    select
+                                                    label='Protocolo'
+                                                    className="input inputText"
+                                                    style={{ width: 135 }}
+                                                    type="text"
+                                                    placeholder="Protocolo"
+                                                    value={protocolo} onChange={(event) => setProtocolo(event.target.value)}>
+                                                    {protocolos.map((option) => (
+                                                        <MenuItem key={option.value} value={option.value}>
+                                                            {option.label}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+                                            </div>
+                                            <div className='porta'>
+                                                <label className="label" for="porta"></label>
+                                                <TextField
+                                                    id="porta"
+                                                    select
+                                                    label='Porta'
+                                                    className="input_field"
+                                                    style={{ width: 135 }}
+                                                    type="text" list="portasList"
+                                                    placeholder="Insira a Porta"
+                                                    value={porta} onChange={(event) => setPorta(event.target.value)}>
+                                                    {portas.map((option) => (
+                                                        <MenuItem key={option.value} value={option.value}>
+                                                            {option.label}
+                                                        </MenuItem>
+                                                    ))}
+                                                </TextField>
+
+                                            </div>
+                                        </div>
+                                        <label className="label" for="prioridade"></label>
+                                        <TextField
+                                            id="prioridade"
+                                            select
+                                            label='Prioridades'
+                                            className="input_field"
+                                            type="text"
+                                            placeholder="Informe a Prioridade"
+                                            value={prioridade} onChange={(event) => setPrioridade(event.target.value)}>
+                                            {prioridades.map((option) => (
+                                                <MenuItem key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                        <label className="label" for="blocoIPSeguranca"></label>
+                                        <TextField
+                                            id="blocoIPSeguranca"
+                                            className="input inputText"
+                                            label='Origem do Tráfego'
+                                            type="text"
+                                            placeholder="000.000.000.000/00"
+                                            value={trafegoOrigem} onChange={(event) => setTrafegoOrigem(event.target.value)} />
+                                        {/* <input className="btnVoltar" type="submit" value="Voltar" /> */}
+                                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarGrupoSeguranca} />
+                                        <ToastContainer />
+                                    </form>
+                                </div>
 
                             </div>
                         </div>
-                        <label className="label" for="prioridade"></label>
-                        <TextField
-                            id="prioridade"
-                            select
-                            label='Prioridades'
-                            className="input_field"
-                            type="text"
-                            placeholder="Informe a Prioridade"
-                            value={prioridade} onChange={(event) => setPrioridade(event.target.value)}>
-                            {prioridades.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <label className="label" for="blocoIPSeguranca"></label>
-                        <TextField
-                            id="blocoIPSeguranca"
-                            className="input inputText"
-                            label='Origem do Tráfego'
-                            type="text"
-                            placeholder="000.000.000.000/00"
-                            value={trafegoOrigem} onChange={(event) => setTrafegoOrigem(event.target.value)} />
-                        {/* <input className="btnVoltar" type="submit" value="Voltar" /> */}
-                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarGrupoSeguranca} />
-                        <ToastContainer/>
-                    </form>
-                </div>
+                )
+            }
 
-            </div>
-        </div>
+        </>
     );
 } 

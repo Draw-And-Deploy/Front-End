@@ -34,7 +34,7 @@ const tamanhos = [
 export default function Form_VML() {
     const [nomeGR, setNomeGR] = useState('');
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('sustenta');
+    const [project_name, setNomeprojeto] = useState('querotever');
     const [nomeSeguranca, setNomeSeguranca] = useState('');
     const [senha, setSenha] = useState('');
     const [hostname, setHostname] = useState('');
@@ -49,8 +49,8 @@ export default function Form_VML() {
     //VIRTUAL MACHINE
     function cadastrarVirtualMachineLinux(evento) {
         evento.preventDefault();
-        // axios.post("http://35.174.249.35:8000/api/linux_virtual_machine/", {
-        axios.post("http://localhost:8000/api/linux_virtual_machine/", {
+        axios.post("http://35.174.249.35:8000/api/linux_virtual_machine/", {
+        // axios.post("http://localhost:8000/api/linux_virtual_machine/", {
 
             vm: {
                 name: nomeVM,

@@ -61,6 +61,43 @@ function TelaProjetos() {
     }, [])
 
 
+    function CredenciaisUserAzure(evento) {
+
+        evento.preventDefault();
+        CredenciaishandleClose();
+        // axios.post("http://35.174.249.35:8000/api/account_credentials/", {
+        axios.post("http://localhost:8000/api/account_credentials/", {
+
+            useracc: {
+                user_email: Email_Aws,
+                user_password: Senha_Aws
+                // subscription_id: subcripitionId,
+                // client_id: clientId,
+                // client_secret: Client_Secret,
+                // tenant_id: tenantId
+            },
+            project: {
+                username: localStorage.getItem("username"),
+                project_name: project_name
+            }
+        }, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+            }
+        })
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    console.log('Cre_DAS_TRA_DO');
+                    setUsername('');
+                    setNomeprojeto('');
+                    // setNomeRede('');
+                    // setNomeGR('');
+                    // setUsername('');
+                    // setNomeprojeto('');
+                    // setBlocoIP('');
+                }
+            }).catch(erro => console.log(erro))
+    }
     function CredenciaisUser(evento) {
 
         evento.preventDefault();
@@ -197,7 +234,7 @@ function TelaProjetos() {
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                             <div className="Container_Modal">
                                 <TextField className="input_field" id="filled-basic" label="User Name" value={username} onChange={(evt) => setUsername(evt.target.value)}></TextField>
-                                <TextField className="input_field" id="filled-basic" label="Nome do Projeto" value={project_name} onChange={(evt) => setNomeprojeto(evt.target.value)}></TextField>
+                                <TextField  className="input_field" id="filled-basic" label="Nome do Projeto" value={project_name} onChange={(evt) => setNomeprojeto(evt.target.value)}></TextField>
                                 <div className="Conta_E">
                                     <div className="btn-group">
                                         <input onClick={cadastrarProjetos} type="submit" className="btn" value="Cadastrar" />
@@ -226,7 +263,7 @@ function TelaProjetos() {
                                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                         <div className='Container_Modal'>
                                             <TextField className="input_field" id="filled-basic" label="Email Azure" variant="filled" />
-                                            <TextField className="input_field" id="filled-basic" label="Senha Azure" variant="filled" />
+                                            <TextField type={"password"} className="input_field" id="filled-basic" label="Senha Azure" variant="filled" />
                                             <div className='Conta_E'>
                                                 <hr />
                                                 <p onClick={Set_Student}>Tem uma conta de estudante ?</p>
@@ -234,7 +271,7 @@ function TelaProjetos() {
                                             </div>
                                         </div>
                                         <div className="btn-group">
-                                            <input onClick={CredenciaisUser} type="submit" className="btn" value="Cadastrar" />
+                                            <input onClick={CredenciaisUserAzure} type="submit" className="btn" value="Cadastrar" />
                                         </div>
                                     </Typography>
                                 </Box>

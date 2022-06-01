@@ -9,9 +9,7 @@ import Banner_form from '../../assets/img/banner_form.svg'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Header from '../../components/header/header'
-import { useNavigate } from 'react-router-dom';
-
-const navigate = useNavigate();
+import Form_VMW from './form_vmw';
 
 const blocosIp = [
     {
@@ -29,7 +27,7 @@ const blocosIp = [
 ];
 
 const blocosIpsub = [
-    
+
     {
         value: '1',
         label: '192.168.0.0/24',
@@ -54,8 +52,22 @@ export default function Form_VNET() {
     const [nomeSubRede, setNomeSubRede] = useState('');
     const [blocoIPSubrede, setBlocoIPSubrede] = useState('');
 
+
+    const [Form, setForm] = useState(0)
+
+    const FormDisplay = () => {
+        if (Form == 1) {
+            return <Form_VMW />
+        }
+    }
+
+
+
+
+
     //VIRTUAL NETWORK
     function cadastrarVnet(evento) {
+
         evento.preventDefault();
         axios.post("http://35.174.249.35:8000/api/virtual_network/", {
 
@@ -82,12 +94,13 @@ export default function Form_VNET() {
                     setUsername('');
                     setNomeprojeto('');
                     setBlocoIP('');
-                    navigate('/FormVMW')
                 }
             }).catch(erro => console.log(erro))
     }
     //SUBNET
     function cadastrarSubrede(evento) {
+        setForm((form) => form + 1)
+
         evento.preventDefault();
         axios.post("http://35.174.249.35:8000/api/subnet/", {
 
@@ -117,6 +130,7 @@ export default function Form_VNET() {
                     setUsername('');
                     setNomeprojeto('');
                     setBlocoIPSubrede('');
+
                 }
             }).catch(erro => console.log(erro))
     }
@@ -124,78 +138,89 @@ export default function Form_VNET() {
 
 
     return (
-        <div className='Stage_form_VNET'>
+        <>
+            {
+                (
+                    Form == 1
+                        ?
+                        FormDisplay()
+                        :
+                        <div className='Stage_form_VNET'>
 
-            <div className='left_stage'>
-                <img src={Banner_form} />
-            </div>
-            <div className='right_stage'>
-                <div className="imgProjeto">
-                    <img src={Net1} />
-                </div>
-                <div>
-                    <div className="titulo">
-                        <h6>Redes Virtuais</h6>
-                    </div>
-                    <form method='post'>
-                        <label className="label" for="selecionaGR"></label>
-                        <TextField id="selecionaGR" className="input_field" label='Grupo de Recurso' list="listaGR" placeholder="Nome do Grupo de Recursos"
-                            // placeholder={{ nomeGR } ? { nomeGR } : "Selecionar GR"} 
-                            value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
-                        <datalist id="listaGR">
-                            <option value={nomeGR} />
-                        </datalist>
+                            <div className='left_stage'>
+                                <img src={Banner_form} />
+                            </div>
+                            <div className='right_stage'>
+                                <div className="imgProjeto">
+                                    <img src={Net1} />
+                                </div>
+                                <div>
+                                    <div className="titulo">
+                                        <h6>Redes Virtuais</h6>
+                                    </div>
+                                    <form method='post'>
+                                        <label className="label" for="selecionaGR"></label>
+                                        <TextField id="selecionaGR" className="input_field" label='Grupo de Recurso' list="listaGR" placeholder="Nome do Grupo de Recursos"
+                                            // placeholder={{ nomeGR } ? { nomeGR } : "Selecionar GR"} 
+                                            value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
+                                        <datalist id="listaGR">
+                                            <option value={nomeGR} />
+                                        </datalist>
 
-                        <label className="label" for="nomeRede"></label>
-                        <TextField id="nomeRede" className="input_field" label='Nome da Rede Virtual ' type="text" placeholder="Insira o nome da Rede" value={nomeRede} onChange={(event) => setNomeRede(event.target.value)} />
-                        <label className="label" for="blocoIP"></label>
-                        <TextField
-                            id="blocoIP"
-                            select
-                            label='Bloco de IPs'
-                            className="input_field"
-                            // list="blocosIp"
-                            type="text"
-                            placeholder="000.000.000.000/00"
-                            value={blocoIP} onChange={(event) => setBlocoIP(event.target.value)}>
-                            {blocosIp.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                                        <label className="label" for="nomeRede"></label>
+                                        <TextField id="nomeRede" className="input_field" label='Nome da Rede Virtual ' type="text" placeholder="Insira o nome da Rede" value={nomeRede} onChange={(event) => setNomeRede(event.target.value)} />
+                                        <label className="label" for="blocoIP"></label>
+                                        <TextField
+                                            id="blocoIP"
+                                            select
+                                            label='Bloco de IPs'
+                                            className="input_field"
+                                            // list="blocosIp"
+                                            type="text"
+                                            placeholder="000.000.000.000/00"
+                                            value={blocoIP} onChange={(event) => setBlocoIP(event.target.value)}>
+                                            {blocosIp.map((option) => (
+                                                <MenuItem key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
 
-                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVnet} />
+                                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVnet} />
 
-                        <div className="titulo" style={{ marginTop: 32 }}>
-                            <div className="linha" />
-                            <h6>Subrede</h6>
-                            <div className="linha" />
+                                        <div className="titulo" style={{ marginTop: 32 }}>
+                                            <div className="linha" />
+                                            <h6>Subrede</h6>
+                                            <div className="linha" />
+                                        </div>
+                                        <label className="label" for="nomeSubRede"></label>
+                                        <TextField id="nomeSubRede" className="input_field" label='Nome da Subrede' type="text" placeholder="Insira o nome da Subede" value={nomeSubRede} onChange={(event) => setNomeSubRede(event.target.value)} />
+                                        <label className="label" for="selecionaRede"> </label>
+                                        <TextField id="selecionaRede" className="input_field" label='Anexar à Rede Virtual' type="text" placeholder="Insira o nome da Rede" value={nomeRede} onChange={(event) => setNomeRede(event.target.value)} />
+                                        <label className="label" for="blocoIPSubrede"></label>
+                                        <TextField
+                                            id="blocoIPSubrede"
+                                            select
+                                            label='Bloco de IPs da Subrede'
+                                            className="input_field"
+                                            type="text"
+                                            laceholder="000.000.000.000/00"
+                                            value={blocoIPSubrede} onChange={(event) => setBlocoIPSubrede(event.target.value)}>
+                                            {blocosIpsub.map((option) => (
+                                                <MenuItem key={option.value} value={option.value}>
+                                                    {option.label}
+                                                </MenuItem>
+                                            ))}
+                                        </TextField>
+                                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarSubrede} />
+                                        <ToastContainer />
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <label className="label" for="nomeSubRede"></label>
-                        <TextField id="nomeSubRede" className="input_field" label='Nome da Subrede' type="text" placeholder="Insira o nome da Subede" value={nomeSubRede} onChange={(event) => setNomeSubRede(event.target.value)} />
-                        <label className="label" for="selecionaRede"> </label>
-                        <TextField id="selecionaRede" className="input_field" label='Anexar à Rede Virtual' type="text" placeholder="Insira o nome da Rede" value={nomeRede} onChange={(event) => setNomeRede(event.target.value)} />
-                        <label className="label" for="blocoIPSubrede"></label>
-                        <TextField
-                            id="blocoIPSubrede"
-                            select
-                            label='Bloco de IPs da Subrede'
-                            className="input_field"
-                            type="text"
-                            laceholder="000.000.000.000/00"
-                            value={blocoIPSubrede} onChange={(event) => setBlocoIPSubrede(event.target.value)}>
-                            {blocosIpsub.map((option) => (
-                                <MenuItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </TextField>
-                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarSubrede} />
-                        <ToastContainer/>
-                    </form>
-                </div>
-            </div>
-        </div>
+                )
+            }
+
+        </>
     );
 } 

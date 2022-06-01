@@ -8,7 +8,7 @@ import CriarRecurso from "./pages/CadastroServicos/criarRecursos";
 import Form_RG from "./components/Formularios/form_rg";
 import Form_SG from "./components/Formularios/form_sg";
 import Form_VNET from "./components/Formularios/form_vnet";
-import Form_VMW from "./components/Formularios/form_vmw";
+
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -23,8 +23,8 @@ root.render(
         {/* Formularios */}
         <Route path="/FormRG" element={<Form_RG />}/>
         <Route path="/FormSG" element={<Form_SG />}/>
-        <Route path="/FormVMW" element={<Form_VMW />}/>
         <Route path="/FormVNET" element={<Form_VNET />}/>
+        
         {/* Formularios */}
       </Routes>
     </BrowserRouter>

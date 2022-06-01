@@ -28,6 +28,23 @@ export default function CriarRecurso() {
     const [username, setUsername] = useState('Carlos');
     const [project_name, setNomeprojeto] = useState('teste');
 
+    const [Form , setForm] = useState(0)
+
+    const StageForm = () => {
+      if (Form ==0) { 
+          return <Form_RG/>
+      }
+      else if (Form==1) {
+          return <Form_VNET/>
+      }
+      else if (Form==2) {
+          return <Form_SG/>
+      }
+      else{
+          return <Form_VMW/>
+      }
+    } 
+
 
 
 

@@ -11,7 +11,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import Header from '../../components/header/header'
 import { useNavigate } from 'react-router-dom';
 
-const navigate = useNavigate();
+
+
 
 
 const tamanhos = [

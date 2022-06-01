@@ -33,7 +33,7 @@ function TelaProjetos() {
     const [ListaProjetos, setListaProjetos] = useState([""])
     const [Excluir, setExcluir] = useState('')
     const [username, setUsername] = useState('');
-    const [project_name, setNomeprojeto] = useState('sustenta');
+    const [project_name, setNomeprojeto] = useState('');
 
 
     const [student, setStudent] = useState(true)
@@ -202,9 +202,7 @@ function TelaProjetos() {
 
     const Navigate = (event) => {
         event.preventDefault();
-        localStorage.getItem('nome-projeto')
-        localStorage.setItem('nome-projeto', project_name  );
-        navigate('/criar_recursos')
+        
 
     }
     const Set_Student = () => {
@@ -318,7 +316,11 @@ function TelaProjetos() {
                                             <p>{project_name}</p>
                                         </div>
                                         <div className="Right">
-                                            <button className='Btn_Editar' onClick={Navigate}>Editar</button>
+                                            <button className='Btn_Editar'  onClick={(evt)=>{
+                                                localStorage.getItem('nome-projeto')
+                                                localStorage.setItem('nome-projeto', project_name  );
+                                                navigate('/criar_recursos')
+                                            }}>Editar</button>
                                             <button className="Btn_Vermelho" onClick={DeletarProjeto}>Excluir</button>
                                         </div>
                                     </div>

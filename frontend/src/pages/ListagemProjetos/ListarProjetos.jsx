@@ -11,6 +11,8 @@ import Header from '../../components/header/header.jsx';
 import { useNavigate } from "react-router-dom"
 import File_Img from "../../assets/img/file-solid_1.svg"
 import jwtDecode from 'jwt-decode';
+import PropTypes from 'prop-types';
+
 
 
 
@@ -32,7 +34,7 @@ function TelaProjetos() {
 
     const [ListaProjetos, setListaProjetos] = useState([""])
     const [Excluir, setExcluir] = useState('')
-    const [username, setUsername] = useState('Carlos');
+    const [username, setUsername] = useState('');
     const [project_name, setNomeprojeto] = useState('');
 
 
@@ -51,9 +53,10 @@ function TelaProjetos() {
     // const [UserName, setUserName] = useState('')
     // const [ProjeteName, setProjeteName] = useState('')
     const navigate = useNavigate();
-    const NavegateCreate = useNavigate();
+    // const NavegateCreate = useNavigate();
     const JWT_Decode= useState();
 
+    
 
     useEffect(() => {
         CredenciaishandleOpen();
@@ -85,7 +88,7 @@ function TelaProjetos() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
-                    console.log('Cre_DAS_TRA_DO');
+                    console.log('Credenciais cadastradas ');
                     setUsername('');
                     setNomeprojeto('');
                     // setNomeRede('');
@@ -139,12 +142,7 @@ function TelaProjetos() {
 
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
-            // {
-            //     username: username,
-            //     project_name: project_name   
-            // }, 
-            {
+        axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name,{
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
                 }
@@ -152,17 +150,39 @@ function TelaProjetos() {
             .then(resposta => {
                 if (resposta.status === 200) {
                     console.log('projeto deletado');
-                    setUsername('');
-                    setNomeprojeto('');
+                    
                 }
             }).catch(erro => console.log(erro))
     }
-
-    const Navigate = (event) => {
-        event.preventDefault();
-        navigate('/criar_recursos')
-
+    
+    function EditarProjeto(evento) {
+        evento.preventDefault();
+        axios.put("http://35.174.249.35:8000/api/edit_existing_project/" ,
+            {
+                username: username,
+                project_name: project_name   
+            }, 
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+                }
+            })
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    console.log('Editando Projeto');
+                    navigate("/criar_recursos")
+                }
+            }).catch(erro => console.log(erro))
+            
     }
+
+
+    // Navigate.prototype ={
+    //     name : PropTypes.string
+    // }
+
+    
+    
     const Set_Student = () => {
         setStudent(false)
     }
@@ -274,8 +294,17 @@ function TelaProjetos() {
                                             <p>{project_name}</p>
                                         </div>
                                         <div className="Right">
-                                            <button className='Btn_Editar' value={project_name} onClick={Navigate}>Editar</button>
-                                            <button className="Btn_Vermelho" value={project_name} onClick={DeletarProjeto}>Excluir</button>
+                                            <button className='Btn_Editar' value={project_name}  onClick={(event)=>{
+                                                setNomeprojeto((p) => p == project_name )
+                                                console.log(project_name)
+                                                EditarProjeto(event)
+                                            }}>Editar</button>
+                                            <button className="Btn_Vermelho" value={project_name} onClick={(event)=>{
+                                                setNomeprojeto((p) => p == project_name )
+                                                console.log(project_name)
+                                                DeletarProjeto(event)
+
+                                            }}>Excluir</button>
                                         </div>
                                     </div>
                                 )

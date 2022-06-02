@@ -11,8 +11,8 @@ import Form_SG from './form_sg';
 export default function Form_RG() {
     const [nomeGR, setNomeGR] = useState('');
     const [regiao, setRegiao] = useState('East US');
-    const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [username, setUsername] = useState('');
+    const [project_name, setNomeprojeto] = useState('');
 
     const [Form, setForm] = useState(0)
 

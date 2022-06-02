@@ -13,15 +13,15 @@ import Form_VMW from './form_vmw';
 
 const blocosIp = [
     {
-        value: 'USD',
+        value: '192.168.0.0/16',
         label: '192.168.0.0/16',
     },
     {
-        value: 'EUR',
+        value: '172.16.0.0/16',
         label: '172.16.0.0/16',
     },
     {
-        value: 'BTC',
+        value: '10.0.0.0/8',
         label: '10.0.0.0/8',
     },
 ];
@@ -29,15 +29,15 @@ const blocosIp = [
 const blocosIpsub = [
 
     {
-        value: '1',
+        value: '192.168.0.0/24',
         label: '192.168.0.0/24',
     },
     {
-        value: '2',
+        value: '172.16.0.0/24',
         label: '172.16.0.0/24',
     },
     {
-        value: '3',
+        value: '10.0.0.0/24',
         label: '10.0.0.0/24',
     },
 ];
@@ -69,7 +69,7 @@ export default function Form_VNET() {
     function cadastrarVnet(evento) {
 
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/virtual_network/", {
+        axios.post("http://localhost:8000/api/virtual_network/", {
 
             vnet: {
                 name: nomeRede,
@@ -102,7 +102,7 @@ export default function Form_VNET() {
         setForm((form) => form + 1)
 
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/subnet/", {
+        axios.post("http://localhost:8000/api/subnet/", {
 
             subnet: {
                 name: nomeSubRede,

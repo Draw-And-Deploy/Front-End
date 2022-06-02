@@ -45,8 +45,8 @@ export default function CriarRecurso() {
 
     function Apply(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/apply/", {
-            // axios.post("http://localhost:8000/api/apply/", {
+        // axios.post("http://35.174.249.35:8000/api/apply/", {
+            axios.post("http://localhost:8000/api/apply/", {
             username: localStorage.getItem("username"),
             project_name: project_name
         }, {

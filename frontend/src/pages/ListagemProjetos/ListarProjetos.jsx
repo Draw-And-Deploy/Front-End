@@ -11,6 +11,7 @@ import Header from '../../components/header/header.jsx';
 import { useNavigate } from "react-router-dom"
 import File_Img from "../../assets/img/file-solid_1.svg"
 import jwtDecode from 'jwt-decode';
+import PropTypes from 'prop-types';
 
 
 
@@ -52,7 +53,7 @@ function TelaProjetos() {
     // const [UserName, setUserName] = useState('')
     // const [ProjeteName, setProjeteName] = useState('')
     const navigate = useNavigate();
-    const NavegateCreate = useNavigate();
+    // const NavegateCreate = useNavigate();
     const JWT_Decode= useState();
 
 
@@ -87,7 +88,7 @@ function TelaProjetos() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
-                    console.log('Cre_DAS_TRA_DO');
+                    console.log('Credenciais cadastradas');
                     setUsername('');
                     setNomeprojeto('');
                     // setNomeRede('');
@@ -139,8 +140,8 @@ function TelaProjetos() {
 
     // ///////////////////////////////////////////////////////////////////////////////////////
     function buscarMeusProjetos() {
-        axios.get("http://35.174.249.35:8000/api/get_projects/" + localStorage.getItem("username"), {
-        // axios.get("http://localhost:8000/api/get_projects/" + localStorage.getItem("username"), {
+        // axios.get("http://35.174.249.35:8000/api/get_projects/" + localStorage.getItem("username"), {
+        axios.get("http://localhost:8000/api/get_projects/" + localStorage.getItem("username"), {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -159,8 +160,8 @@ function TelaProjetos() {
     function cadastrarProjetos(evento) {
         handleClose()
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/create_project/", {
-        // axios.post("http://localhost:8000/api/create_project/", {
+        // axios.post("http://35.174.249.35:8000/api/create_project/", {
+        axios.post("http://localhost:8000/api/create_project/", {
             username: localStorage.getItem("username"),
             project_name: project_name
         }, {
@@ -180,13 +181,12 @@ function TelaProjetos() {
 
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        // axios.delete("http://localhost:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
-        axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
+        axios.delete("http://localhost:8000/api/delete_project/"  + localStorage.getItem("username") + "/" + project_name,{
+        // axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
             // {
             //     username: username,
             //     project_name: project_name   
             // }, 
-            {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
                 }
@@ -199,6 +199,28 @@ function TelaProjetos() {
                 }
             }).catch(erro => console.log(erro))
     }
+
+    function EditarProjeto(evento) {
+        evento.preventDefault();
+        axios.put("http://localhost:8000/api/edit_existing_project/" ,
+            {
+                username: username,
+                project_name: project_name   
+            }, 
+            {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+                }
+            })
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    console.log('Editando Projeto');
+                    navigate("/criar_recursos")
+                }
+            }).catch(erro => console.log(erro))
+
+    }
+
 
     const Navigate = (event) => {
         event.preventDefault();
@@ -231,7 +253,7 @@ function TelaProjetos() {
 
                         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                             <div className="Container_Modal">
-                                <TextField className="input_field" id="filled-basic" label="User Name" value={username} onChange={(evt) => setUsername(evt.target.value)}></TextField>
+                                {/* <TextField className="input_field" id="filled-basic" label="User Name" value={username} onChange={(evt) => setUsername(evt.target.value)}></TextField> */}
                                 <TextField  className="input_field" id="filled-basic" label="Nome do Projeto" value={project_name} onChange={(evt) => setNomeprojeto(evt.target.value)}></TextField>
                                 <div className="Conta_E">
                                     <div className="btn-group">
@@ -316,12 +338,17 @@ function TelaProjetos() {
                                             <p>{project_name}</p>
                                         </div>
                                         <div className="Right">
-                                            <button className='Btn_Editar'  onClick={(evt)=>{
-                                                localStorage.getItem('nome-projeto')
-                                                localStorage.setItem('nome-projeto', project_name  );
-                                                navigate('/criar_recursos')
+                                        <button className='Btn_Editar' value={project_name}  onClick={(event)=>{
+                                                setNomeprojeto((p) => p == project_name )
+                                                console.log(project_name)
+                                                EditarProjeto(event)
                                             }}>Editar</button>
-                                            <button className="Btn_Vermelho" onClick={DeletarProjeto}>Excluir</button>
+                                            <button className="Btn_Vermelho" value={project_name} onClick={(event)=>{
+                                                setNomeprojeto((p) => p == project_name )
+                                                console.log(project_name)
+                                                DeletarProjeto(event)
+
+                                            }}>Excluir</button>
                                         </div>
                                     </div>
                                 )

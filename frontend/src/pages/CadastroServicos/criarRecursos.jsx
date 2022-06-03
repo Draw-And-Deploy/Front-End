@@ -35,7 +35,7 @@ const style = {
 
 export default function CriarRecurso() {
     const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('querotever');
+    const [project_name, setNomeprojeto] = useState(localStorage.getItem('project_name'));
     const [URL, setURL] = useState({});
 
 
@@ -45,10 +45,10 @@ export default function CriarRecurso() {
 
     function Apply(evento) {
         evento.preventDefault();
-        // axios.post("http://35.174.249.35:8000/api/apply/", {
-            axios.post("http://localhost:8000/api/apply/", {
+        axios.post("http://35.174.249.35:8000/api/apply/", {
+            // axios.post("http://localhost:8000/api/apply/", {
             username: localStorage.getItem("username"),
-            project_name: project_name
+            project_name: localStorage.getItem('project_name')
         }, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -67,7 +67,7 @@ export default function CriarRecurso() {
     function DeletarProjeto(evento) {
         evento.preventDefault();
         // axios.delete("http://35.174.249.35:8000/api/destroy/" + localStorage.getItem("username") + "/" + project_name + "/",
-        axios.delete("http://localhost:8000/api/destroy/" + localStorage.getItem("username") + "/" + project_name + "/",
+        axios.delete("http://35.174.249.35:8000/api/destroy/" + localStorage.getItem("username") + "/" + localStorage.getItem('project_name', project_name) + "/",
             // {
             //     username: username,
             //     project_name: project_name   

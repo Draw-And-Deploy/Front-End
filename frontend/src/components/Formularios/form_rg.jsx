@@ -26,15 +26,15 @@ export default function Form_RG() {
     function cadastrarRGroup(evento) {
         evento.preventDefault();
         // 35.174.249.35:8000
-        axios.post("http://localhost:8000/api/resource_group/", {
+        axios.post("http://35.174.249.35:8000/api/resource_group/", {
             rg: {
                 name: nomeGR,
                 location: regiao
             },
             project: {
                 // localStorage.getItem("username")
-                username: username,
-                project_name: project_name
+                username: localStorage.getItem("username"),
+                project_name: localStorage.getItem('project_name')
             }
 
         }, {

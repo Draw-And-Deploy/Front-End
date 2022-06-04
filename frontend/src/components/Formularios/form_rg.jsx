@@ -22,11 +22,11 @@ export default function Form_RG() {
         }
     }
 
-    //RESOURCE GRUP
+    //RESOURCE GROUP
     function cadastrarRGroup(evento) {
         evento.preventDefault();
         // 35.174.249.35:8000
-        axios.post("http://35.174.249.35:8000/api/resource_group/", {
+        axios.post("http://localhost:8000/api/resource_group/", {
             rg: {
                 name: nomeGR,
                 location: regiao

@@ -11,8 +11,8 @@ import Form_SG from './form_sg';
 export default function Form_RG() {
     const [nomeGR, setNomeGR] = useState('');
     const [regiao, setRegiao] = useState('East US');
-    const [username, setUsername] = useState('');
-    const [project_name, setNomeprojeto] = useState('');
+    const [username, setUsername] = useState(localStorage.getItem("username"));
+    const [project_name, setNomeprojeto] = useState(localStorage.getItem("project_name"));
 
     const [Form, setForm] = useState(0)
 
@@ -33,8 +33,8 @@ export default function Form_RG() {
             },
             project: {
                 // localStorage.getItem("username")
-                username: localStorage.getItem("username"),
-                project_name: localStorage.getItem('project_name')
+                username: username,
+                project_name: project_name
             }
 
         }, {

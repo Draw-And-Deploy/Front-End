@@ -62,7 +62,7 @@ export default function Form_VML() {
                 username: user_name,
             },
             project: {
-                username: localStorage.getItem("username"),
+                username: username,
                 project_name: project_name
             }
 

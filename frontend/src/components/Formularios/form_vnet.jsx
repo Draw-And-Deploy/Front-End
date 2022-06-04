@@ -45,8 +45,8 @@ const blocosIpsub = [
 
 export default function Form_VNET() {
     const [nomeGR, setNomeGR] = useState('');
-    const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [username, setUsername] = useState(localStorage.getItem("username"));
+    const [project_name, setNomeprojeto] = useState(localStorage.getItem("project_name"));
     const [nomeRede, setNomeRede] = useState('');
     const [blocoIP, setBlocoIP] = useState('');
     const [nomeSubRede, setNomeSubRede] = useState('');
@@ -77,7 +77,7 @@ export default function Form_VNET() {
                 cidr_block: blocoIP,
             },
             project: {
-                username: localStorage.getItem("username"),
+                username: username,
                 project_name: project_name
             }
         }, {

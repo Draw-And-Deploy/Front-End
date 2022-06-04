@@ -36,8 +36,8 @@ const tamanhos = [
 
 export default function Form_VMW() {
     const [nomeGR, setNomeGR] = useState('');
-    const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [username, setUsername] = useState(localStorage.getItem("username"));
+    const [project_name, setNomeprojeto] = useState(localStorage.getItem("project_name"));
     const [nomeSeguranca, setNomeSeguranca] = useState('');
     const [senha, setSenha] = useState('');
     const [hostname, setHostname] = useState('');
@@ -73,7 +73,7 @@ export default function Form_VMW() {
                 username: user_name,
             },
             project: {
-                username: localStorage.getItem("username"),
+                username: username,
                 project_name: project_name
             }
 
@@ -114,7 +114,7 @@ export default function Form_VMW() {
                 hostname: hostname
             },
             project: {
-                username: localStorage.getItem("username"),
+                username: username,
                 project_name: project_name
             }
 

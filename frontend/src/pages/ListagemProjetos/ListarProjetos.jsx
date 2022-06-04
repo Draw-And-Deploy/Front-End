@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom"
 import File_Img from "../../assets/img/file-solid_1.svg"
 import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css'; 
 
 
 
@@ -23,8 +25,8 @@ const style = {
 function TelaProjetos() {
     const [ListaProjetos, setListaProjetos] = useState([""])
     const [Excluir, setExcluir] = useState('')
-    const [username, setUsername] = useState('');
-    const [project_name, setNomeprojeto] = useState('');
+    const [username, setUsername] = useState(localStorage.getItem("username"));
+    const [project_name, setNomeprojeto] = useState(localStorage.getItem("project_name"));
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -50,8 +52,8 @@ function TelaProjetos() {
 
     // ///////////////////////////////////////////////////////////////////////////////////////
     function buscarMeusProjetos() {
-        // axios.get("http://35.174.249.35:8000/api/get_projects/" + localStorage.getItem("username") + "/", {
-        axios.get("http://localhost:8000/api/get_projects/" + localStorage.getItem("username") + "/", {
+        axios.get("http://localhost:8000/api/get_projects/" + username + "/", {
+        //axios.get("http://35.174.249.35:8000/api/get_projects/" + username + "/", {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -71,8 +73,8 @@ function TelaProjetos() {
         handleClose()
         evento.preventDefault();
         axios.post("http://localhost:8000/api/create_project/", {
-        // axios.post("http://localhost:8000/api/create_project/", {
-            username: localStorage.getItem("username"),
+        // axios.post("http://35.174.249.35:8000/api/create_project/", {
+            username: username,
             project_name: project_name 
         }, {
             headers: {
@@ -81,9 +83,13 @@ function TelaProjetos() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    toast.success("Projeto cadastrado com sucesso!")
                     console.log("projeto cadastrado");
                     setUsername([]);
                     setNomeprojeto([]);
+                    window.location.reload();
+                    // setListaProjetos(ListaProjetos);
+                    
                     // navigate('/criar_recursos', { state: { message: 'Projeto criado com sucesso!' } })
                 }
             }).catch(erro => console.log(erro))
@@ -91,8 +97,8 @@ function TelaProjetos() {
 
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        axios.delete("http://localhost:8000/api/delete_project/"  + localStorage.getItem("username") + "/" + project_name,{
-        // axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + project_name + "/",
+        // axios.delete("http://35.174.249.35:8000/api/delete_project/" + username + "/" + project_name + "/",{
+        axios.delete("http://localhost:8000/api/delete_project/" + username + "/" + project_name + "/",{
             // {
             //     username: username,
             //     project_name: project_name   
@@ -103,9 +109,12 @@ function TelaProjetos() {
             })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    toast.success("Projeto deletado!")
                     console.log('projeto deletado');
                     setUsername('');
                     setNomeprojeto('');
+                    window.location.reload();
+                    // setListaProjetos(ListaProjetos);
                 }
             }).catch(erro => console.log(erro))
     }
@@ -114,8 +123,8 @@ function TelaProjetos() {
         evento.preventDefault();
         axios.put("http://localhost:8000/api/edit_existing_project/" ,
             {
-                username: localStorage.getItem("username"),
-                project_name: localStorage.getItem('project_name')   
+                username: username,
+                project_name: project_name   
             }, 
             {
                 headers: {
@@ -165,6 +174,7 @@ function TelaProjetos() {
                                     <div className="btn-group">
                                         <input onClick={cadastrarProjetos} type="submit" className="btn" value="Cadastrar" />
                                     </div>
+                                    <ToastContainer/>
                                 </div>
                             </div>
                         </Typography>
@@ -200,6 +210,7 @@ function TelaProjetos() {
                                                 DeletarProjeto(event)
 
                                             }}>Excluir</button>
+                                            <ToastContainer/>
                                         </div>
                                     </div>
                                 )

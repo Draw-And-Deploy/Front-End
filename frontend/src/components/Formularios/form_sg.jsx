@@ -61,8 +61,8 @@ const protocolos = [
 
 export default function Form_SG() {
     const [nomeGR, setNomeGR] = useState('');
-    const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [username, setUsername] = useState(localStorage.getItem("username"));
+    const [project_name, setNomeprojeto] = useState(localStorage.getItem("project_name"));
     const [nomeSeguranca, setNomeSeguranca] = useState('');
     const [trafegoOrigem, setTrafegoOrigem] = useState('0.0.0.0/0');
     const [protocolo, setProtocolo] = useState('');
@@ -98,7 +98,7 @@ export default function Form_SG() {
                 // rule_dest_address_prefix: "*"
             },
             project: {
-                username: localStorage.getItem("username"),
+                username: username,
                 project_name: project_name
             }
 

@@ -9,8 +9,7 @@ import Logo from '../../assets/img/cloud_Main.svg'
 import Banner_form from '../../assets/img/banner_form.svg'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import Form_VNET from './form_vnet';
-
+import Form_VMW from './form_vmw';
 
 
 const portas = [
@@ -27,7 +26,7 @@ const portas = [
         label: '3309',
     },
     {
-        value: 'BTC',
+        value: 'BTA',
         label: '443',
     },
 ];
@@ -60,9 +59,9 @@ const protocolos = [
 
 
 export default function Form_SG() {
-    const [nomeGR, setNomeGR] = useState('');
-    const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [nomeGR, setNomeGR] = useState(localStorage.getItem('NomeRG'));
+    const [username, setUsername] = useState('');
+    const [project_name, setNomeprojeto] = useState('');
     const [nomeSeguranca, setNomeSeguranca] = useState('');
     const [trafegoOrigem, setTrafegoOrigem] = useState('0.0.0.0/0');
     const [protocolo, setProtocolo] = useState('');
@@ -73,14 +72,12 @@ export default function Form_SG() {
 
     const FormDisplay = () => {
         if (Form == 1) {
-            return <Form_VNET />
+            return <Form_VMW/>
         }
     }
 
 
     function cadastrarGrupoSeguranca(evento) {
-        setForm((form) => form + 1)
-
         evento.preventDefault();
         axios.post("http://35.174.249.35:8000/api/security_group/", {
 
@@ -99,7 +96,7 @@ export default function Form_SG() {
             },
             project: {
                 username: localStorage.getItem("username"),
-                project_name: project_name
+                project_name: localStorage.getItem('project_name')
             }
 
         }, {
@@ -111,16 +108,8 @@ export default function Form_SG() {
                 if (resposta.status === 200) {
                     toast.success("Grupo de Segurança cadastrado com sucesso!")
                     console.log('security group cadastrado');
-                    setNomeSeguranca(nomeSeguranca);
-                    setNomeGR(nomeGR);
-                    setPrioridade('');
-                    setPorta('');
-                    setProtocolo('');
-                    setTrafegoOrigem('');
-                    setUsername('');
-                    setNomeprojeto('');
-                    
-
+                    setForm((form) => form + 1)
+                    localStorage.setItem('Grupo_de_segurança' , nomeSeguranca)
                 }
             }).catch(erro => console.log(erro))
     }
@@ -154,7 +143,7 @@ export default function Form_SG() {
                                         <label className="label" for="selecionaGR_GS"></label>
                                         <TextField id="selecionaGR_GS" className="input inputText" label='Grupo de Recurso' list="listaGR" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
                                         <label className="label" for="grupoSeguranca"></label>
-                                        <TextField id="grupoSeguranca" className="input inputText" label='Nome do Grupo de Segurança ' placeholder="Insira o nome do GS" value={nomeSeguranca} onChange={(event) => setNomeSeguranca(event.target.value)} />
+                                        <TextField id="grupoSeguranca" className="input inputText" label='Nome do Grupo de Segurança ' placeholder="Insira o nome do GS" value={nomeSeguranca} onChange={(event) =>{ setNomeSeguranca(event.target.value)}} />
                                         <div className='form_dividido'>
                                             <div className='protocolo'>
                                                 <label className="label" for="protocolo"></label>

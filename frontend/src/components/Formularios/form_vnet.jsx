@@ -9,8 +9,7 @@ import Banner_form from '../../assets/img/banner_form.svg'
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Header from '../../components/header/header'
-import Form_VMW from './form_vmw';
-
+import Form_SG from './form_sg';
 const blocosIp = [
     {
         value: '192.168.0.0/16',
@@ -44,9 +43,9 @@ const blocosIpsub = [
 
 
 export default function Form_VNET() {
-    const [nomeGR, setNomeGR] = useState('');
-    const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [nomeGR, setNomeGR] = useState(localStorage.getItem('NomeRG'));
+    const [username, setUsername] = useState('');
+    const [project_name, setNomeprojeto] = useState('');
     const [nomeRede, setNomeRede] = useState('');
     const [blocoIP, setBlocoIP] = useState('');
     const [nomeSubRede, setNomeSubRede] = useState('');
@@ -57,7 +56,7 @@ export default function Form_VNET() {
 
     const FormDisplay = () => {
         if (Form == 1) {
-            return <Form_VMW />
+            return <Form_SG />
         }
     }
 
@@ -69,7 +68,7 @@ export default function Form_VNET() {
     function cadastrarVnet(evento) {
 
         evento.preventDefault();
-        axios.post("http://localhost:8000/api/virtual_network/", {
+        axios.post("http://35.174.249.35:8000/api/virtual_network/", {
 
             vnet: {
                 name: nomeRede,
@@ -78,7 +77,7 @@ export default function Form_VNET() {
             },
             project: {
                 username: localStorage.getItem("username"),
-                project_name: project_name
+                project_name: localStorage.getItem("project_name"),
             }
         }, {
             headers: {
@@ -89,20 +88,15 @@ export default function Form_VNET() {
                 if (resposta.status === 200) {
                     toast.success("Rede Virtual cadastrada com sucesso!")
                     console.log('vnet cadastrada');
-                    setNomeRede(nomeRede);
-                    setNomeGR(nomeGR);
-                    setUsername('');
-                    setNomeprojeto('');
-                    setBlocoIP('');
+                    
                 }
             }).catch(erro => console.log(erro))
     }
     //SUBNET
     function cadastrarSubrede(evento) {
-        setForm((form) => form + 1)
 
         evento.preventDefault();
-        axios.post("http://localhost:8000/api/subnet/", {
+        axios.post("http://35.174.249.35:8000/api/subnet/", {
 
             subnet: {
                 name: nomeSubRede,
@@ -112,8 +106,8 @@ export default function Form_VNET() {
             },
 
             project: {
-                username: username,
-                project_name: project_name
+                username: localStorage.getItem("username"),
+                project_name: localStorage.getItem("project_name")
             }
         }, {
             headers: {
@@ -124,13 +118,7 @@ export default function Form_VNET() {
                 if (resposta.status === 200) {
                     toast.success("SubRede cadastrada com sucesso!")
                     console.log("SUBNET cadastrada");
-                    setNomeGR(nomeGR);
-                    setNomeRede(nomeRede);
-                    setNomeSubRede(nomeSubRede);
-                    setUsername('');
-                    setNomeprojeto('');
-                    setBlocoIPSubrede('');
-
+                    setForm((form) => form + 1)
                 }
             }).catch(erro => console.log(erro))
     }

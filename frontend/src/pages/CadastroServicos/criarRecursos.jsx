@@ -33,186 +33,22 @@ const style = {
 };
 
 export default function CriarRecurso() {
-    const [username, setUsername] = useState('Carlos');
+    const [username, setUsername] = useState('');
     const [project_name, setNomeprojeto] = useState(localStorage.getItem('project_name'));
     const [URL, setURL] = useState({});
 
     const [Form , setForm] = useState(0)
 
-    const StageForm = () => {
-      if (Form ==0) { 
-          return <Form_RG/>
-      }
-      else if (Form==1) {
-          return <Form_VNET/>
-      }
-      else if (Form==2) {
-          return <Form_SG/>
-      }
-      else{
-          return <Form_VMW/>
-      }
-    } 
-
-
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-
-    const [Open_Modal_Credenciais, setOpen_Modal_Credenciais] = React.useState(false);
-    const CredenciaishandleOpen = () => setOpen_Modal_Credenciais(true);
-    const CredenciaishandleClose = () => setOpen_Modal_Credenciais(false);
-
-    //  CREDENCIAIS DO USUARIO 
-    const [subcripitionId, setSubcripitionId] = useState('')
-    const [clientId, setClientId] = useState('')
-    const [Client_Secret, setClient_Secret] = useState('')
-    const [tenantId, setTenantId] = useState('')
-    const [Email_Aws, setEmail_Aws] = useState('')
-    const [Senha_Aws, setSenha_Aws] = useState('')
-
-
-    const [student, setStudent] = useState(true)
    
 
-    useEffect(() => {
-        CredenciaishandleOpen();
-    }, [])
+    
 
 
-    function CredenciaisUserAzure(evento) {
-
-        evento.preventDefault();
-        CredenciaishandleClose();
-        // axios.post("http://35.174.249.35:8000/api/account_credentials/", {
-        axios.post("http://localhost:8000/api/account_credentials/", {
-
-            useracc: {
-                user_email: Email_Aws,
-                user_password: Senha_Aws
-                // subscription_id: subcripitionId,
-                // client_id: clientId,
-                // client_secret: Client_Secret,
-                // tenant_id: tenantId
-            },
-            project: {
-                username: localStorage.getItem("username"),
-                project_name: project_name
-            }
-        }, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-        })
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    console.log('Credenciais cadastradas');
-                    setUsername('');
-                    setNomeprojeto('');
-                    // setNomeRede('');
-                    // setNomeGR('');
-                    // setUsername('');
-                    // setNomeprojeto('');
-                    // setBlocoIP('');
-                }
-            }).catch(erro => console.log(erro))
-    }
+    
+    
 
 
-    function CredenciaisUser(evento) {
-
-        evento.preventDefault();
-        CredenciaishandleClose();
-        // axios.post("http://35.174.249.35:8000/api/account_credentials/", {
-        axios.post("http://localhost:8000/api/account_credentials/", {
-
-            useracc: {
-                // user_email: Email_Aws,
-                // user_password: Senha_Aws,
-                subscription_id: subcripitionId,
-                client_id: clientId,
-                client_secret: Client_Secret,
-                tenant_id: tenantId
-            },
-            project: {
-                username: localStorage.getItem("username"),
-                project_name: localStorage.getItem('project_name') 
-            }
-        }, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-        })
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    console.log('Cre_DAS_TRA_DO');
-                    setUsername('');
-                    setNomeprojeto('');
-                    // setNomeRede('');
-                    // setNomeGR('');
-                    // setUsername('');
-                    // setNomeprojeto('');
-                    // setBlocoIP('');
-                }
-            }).catch(erro => console.log(erro))
-    }
-
-    const Set_Student = () => {
-        setStudent(false)
-    }
-    const Set_Azure = () => {
-        setStudent(true)
-    }
-
-
-
-    function Apply(evento) {
-        evento.preventDefault();
-        // axios.post("http://35.174.249.35:8000/api/apply/", {
-            axios.post("http://localhost:8000/api/apply/", {
-            username: localStorage.getItem("username"),
-            project_name: localStorage.getItem('project_name')
-        }, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-        })
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    toast.success(URL)
-                    setURL(resposta.data)
-                    console.log('apply feita com sucesso');
-                    setUsername('');
-                    setNomeprojeto('');
-                    setOpen_Modal_Credenciais(true);
-
-                }
-            }).catch(erro => console.log(erro))
-    }
-    function DeletarProjeto(evento) {
-        evento.preventDefault();
-        // axios.delete("http://35.174.249.35:8000/api/destroy/" + localStorage.getItem("username") + "/" + project_name + "/",
-        axios.delete("http://localhost:8000/api/destroy/" + localStorage.getItem("username") + "/" + localStorage.getItem('project_name', project_name) + "/",
-            // {
-            //     username: username,
-            //     project_name: project_name   
-            // }, 
-            {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-                }
-            })
-            .then(resposta => {
-                if (resposta.status === 200) {
-
-                    console.log('projeto deletado');
-                    setUsername('');
-                    setNomeprojeto('');
-                }
-            }).catch(erro => console.log(erro))
-    }
-
+    
 
     return (
         <>
@@ -220,7 +56,7 @@ export default function CriarRecurso() {
                 <Header />
                 <div className="body">
 
-                <Modal
+                {/* <Modal
                     open={Open_Modal_Credenciais}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
@@ -277,7 +113,7 @@ export default function CriarRecurso() {
 
 
 
-                </Modal>
+                </Modal> */}
                     {/* {
                             passos[passoAtual].id === "passo1" && (
                             <> */}
@@ -290,12 +126,12 @@ export default function CriarRecurso() {
                             <span > <a href={URL.Link}> {URL.Link}</a> </span>
                         </div>
 
-                        <div className='div_btn_apply'>
+                        {/* <div className='div_btn_apply'>
                             <input className="btnProxU" type="submit" value="Apply" onClick={Apply} />
                         </div>
                         <div className='div_btn_'>
                             <input className="btnProxUX" type="submit" value="Deletar" onClick={DeletarProjeto} />
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>

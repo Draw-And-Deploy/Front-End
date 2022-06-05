@@ -52,8 +52,8 @@ function TelaProjetos() {
 
     // ///////////////////////////////////////////////////////////////////////////////////////
     function buscarMeusProjetos() {
-        axios.get("http://localhost:8000/api/get_projects/" + username + "/", {
-        //axios.get("http://35.174.249.35:8000/api/get_projects/" + username + "/", {
+        // axios.get("http://localhost:8000/api/get_projects/" + username + "/", {
+        axios.get("http://35.174.249.35:8000/api/get_projects/" + username + "/", {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -72,8 +72,8 @@ function TelaProjetos() {
     function cadastrarProjetos(evento) {
         handleClose()
         evento.preventDefault();
-        axios.post("http://localhost:8000/api/create_project/", {
-        // axios.post("http://35.174.249.35:8000/api/create_project/", {
+        // axios.post("http://localhost:8000/api/create_project/", {
+        axios.post("http://35.174.249.35:8000/api/create_project/", {
             username: username,
             project_name: project_name 
         }, {
@@ -97,8 +97,8 @@ function TelaProjetos() {
 
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        // axios.delete("http://35.174.249.35:8000/api/delete_project/" + username + "/" + project_name + "/",{
-        axios.delete("http://localhost:8000/api/delete_project/" + username + "/" + project_name + "/",{
+        axios.delete("http://35.174.249.35:8000/api/delete_project/" + username + "/" + project_name + "/",{
+        // axios.delete("http://localhost:8000/api/delete_project/" + username + "/" + project_name + "/",{
             // {
             //     username: username,
             //     project_name: project_name   
@@ -121,7 +121,7 @@ function TelaProjetos() {
 
     function EditarProjeto(evento) {
         evento.preventDefault();
-        axios.put("http://localhost:8000/api/edit_existing_project/" ,
+        axios.put("http://35.174.249.35:8000/api/edit_existing_project/" ,
             {
                 username: username,
                 project_name: project_name   

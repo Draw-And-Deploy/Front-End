@@ -11,8 +11,8 @@ import Form_SG from './form_sg';
 export default function Form_RG() {
     const [nomeGR, setNomeGR] = useState('');
     const [regiao, setRegiao] = useState('East US');
-    const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('teste');
+    const [username, setUsername] = useState('');
+    const [project_name, setNomeprojeto] = useState('');
 
     const [Form, setForm] = useState(0)
 
@@ -22,7 +22,7 @@ export default function Form_RG() {
         }
     }
 
-    //RESOURCE GRUP
+    //RESOURCE GROUP
     function cadastrarRGroup(evento) {
         evento.preventDefault();
         // 35.174.249.35:8000
@@ -33,8 +33,8 @@ export default function Form_RG() {
             },
             project: {
                 // localStorage.getItem("username")
-                username: username,
-                project_name: project_name
+                username: localStorage.getItem("username"),
+                project_name: localStorage.getItem('project_name')
             }
 
         }, {

@@ -61,9 +61,8 @@ function Login() {
 
   const Cadastrar = (event) => {
     event.preventDefault();
-    setAnimaition(true);
-    // setUsername(true)
-    axios.post("http://54.165.113.191:8080/api/create_user/", {
+
+    axios.post("http://localhost:8080/api/create_user/", {
       username: username
 
     }, {
@@ -124,8 +123,8 @@ function Login() {
         localStorage.setItem('username', Userdata["custom:username"] );
         // console.log( jwt_decode(data.getIdToken().getJwtToken()))
 
-        // navigate("/meus_projetos")
         navigate("/meus_projetos")
+        // navigate("/criar_recursos")
         console.log("onSuccess: ", data);
         setLoading(true)
       },
@@ -145,7 +144,16 @@ function Login() {
     });
   }
 
-
+  const changeCase=(event)=>{
+    event.preventDefault();
+    // setUsername(event.target.value.toLowerCase());
+    setUsername(event.target.value.replace(/\s/g, ""));
+}
+//   const minuscula=(event)=>{
+//     event.preventDefault();
+//     setUsername(event.target.value.toLowerCase());
+//     // setUsername(event.target.value.replace(/\s/g, ""));
+// }
 
   const addClass = () => {
     setAnimaition(true)
@@ -205,7 +213,9 @@ function Login() {
               <div className="input-field">
                 <i className='fas fa-user'></i>
                 <input
-                  type="text" placeholder="Username" value={username} onChange={(evt) => setUsername(evt.target.value)} />
+                  type="username" placeholder="Username" value={username} 
+                  onChange={changeCase}
+                   />
               </div>
               <div className="input-field">
                 <i className="fas fa-envelope"></i>

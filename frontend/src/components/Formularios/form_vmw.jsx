@@ -14,7 +14,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
 const tamanhos = [
     {
         value: 'USD',
@@ -62,7 +61,7 @@ export default function Form_VMW() {
     //VIRTUAL MACHINE LINUX
     function cadastrarVirtualMachineLinux(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/linux_virtual_machine/", {
+        axios.post("http://localhost:8000/api/linux_virtual_machine/", {
 
             vm: {
                 name: nomeVM,
@@ -102,7 +101,7 @@ export default function Form_VMW() {
     //VIRTUAL MACHINE Windows
     function cadastrarVirtualMachineWindows(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/windows_virtual_machine/", {
+        axios.post("http://localhost:8000/api/windows_virtual_machine/", {
 
             vm: {
                 name: nomeVM,
@@ -144,7 +143,7 @@ export default function Form_VMW() {
 
     function Apply(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/apply/", {
+        axios.post("http://localhost:8000/api/apply/", {
             username: username,
             project_name: project_name
         }, {

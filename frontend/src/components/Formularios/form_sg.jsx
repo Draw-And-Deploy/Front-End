@@ -33,26 +33,26 @@ const portas = [
 ];
 const prioridades = [
     {
-        value: 'USD',
+        value: '100',
         label: '100',
     },
     {
-        value: 'EUR',
+        value: '110',
         label: '110',
     },
     {
-        value: 'BTC',
+        value: '120',
         label: '120',
     },
 ];
 
 const protocolos = [
     {
-        value: 'USD',
+        value: 'TCP',
         label: 'TCP',
     },
     {
-        value: 'EUR',
+        value: 'UDP',
         label: 'UDP',
     },
 ];

@@ -10,8 +10,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Header from '../../components/header/header'
 import { useNavigate } from 'react-router-dom';
-
-
+import ModalApply from '../Apply/Apply';
 
 
 const tamanhos = [
@@ -49,6 +48,7 @@ export default function Form_VMW() {
     const [linux, setlinux] = useState(false);
     const [public_key, setPublicKey] = useState('');
 
+    const [Apply, setApply] = useState(false);
 
 
     const LinuxTrue = () => {
@@ -57,7 +57,12 @@ export default function Form_VMW() {
     const LinuxFalse = () => {
         setlinux(false);
     }
+    const OpenApply = () => {
+        setApply(true)
+    }
 
+
+    
     //VIRTUAL MACHINE LINUX
     function cadastrarVirtualMachineLinux(evento) {
         evento.preventDefault();
@@ -86,7 +91,7 @@ export default function Form_VMW() {
                 if (resposta.status === 200) {
                     toast.success("Virtual Machine Linux cadastrada com sucesso!")
                     console.log('VMW cadastrada');
-                    
+
                 }
             }).catch(erro => console.log(erro))
     }
@@ -120,29 +125,12 @@ export default function Form_VMW() {
                 if (resposta.status === 200) {
                     toast.success("Virtual Machine Windows cadastrada com sucesso!")
                     console.log('VMW cadastrada');
-                    
+
                 }
             }).catch(erro => console.log(erro))
     }
 
-    function Apply(evento) {
-        evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/apply/", {
-            username: username,
-            project_name: project_name
-        }, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-        })
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    console.log('apply feita com sucesso');
-                    setUsername('');
-                    setNomeprojeto('');
-                }
-            }).catch(erro => console.log(erro))
-    }
+    
     // function DeletarProjeto(evento) {
     //     evento.preventDefault();
     //     axios.delete("http://35.174.249.35:8000/api/destroy/" + username + "/" + project_name + "/",
@@ -172,6 +160,14 @@ export default function Form_VMW() {
     // ))}
     return (
         <>
+            {
+                (
+                    Apply?
+                        <ModalApply/>
+                    :
+                    <></>
+                )
+            }
             {
                 (
                     linux ?
@@ -274,7 +270,9 @@ export default function Form_VMW() {
                                         <TextField id="hostname" className="inputfield" label='Hostname' type="text" placeholder="Insira o Hostname da VM" value={hostname} onChange={(event) => setHostname(event.target.value)} />
                                         <div className="btn_WL">
                                             <input className="btnProxU" type="submit" value="Linux !" onClick={LinuxTrue} />
-                                            <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineWindows} />
+                                            <input className="btnProxU" type="submit" value="Cadastrar" onClick={() =>{cadastrarVirtualMachineWindows()
+                                            OpenApply()
+                                            }} />
                                             <input className="btnProxU" type="submit" value='Aplay' />
                                         </div>
                                         <ToastContainer />

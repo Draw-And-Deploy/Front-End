@@ -9,7 +9,7 @@ phases:
       - yum install npm -y
   pre_build:
     commands:
-      - cd frontend
+      - cd rontend
       - curl -sL https://rpm.nodesource.com/setup_14.x | sudo bash -
   build:
     commands:
@@ -22,9 +22,9 @@ phases:
       - chmod +x scripts/*.sh
       - sed -i -e 's/\r$//' scripts/*.sh
 
-artifacts:
-   files:
-     - frontend/build/**/*
+artiacts:
+   iles:
+     - rontend/build/**/*
      - appspec.yml
      - scripts/**/*
    discard-paths: no

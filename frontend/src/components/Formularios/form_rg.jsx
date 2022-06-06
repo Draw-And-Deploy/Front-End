@@ -7,18 +7,19 @@ import Banner_form from '../../assets/img/banner_form.svg'
 import { TextField } from '@mui/material';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import Form_SG from './form_sg';
+import Form_VNET from './form_vnet';
+
+
 export default function Form_RG() {
     const [nomeGR, setNomeGR] = useState('');
     const [regiao, setRegiao] = useState('East US');
-    const [username, setUsername] = useState(localStorage.getItem("username"));
-    const [project_name, setNomeprojeto] = useState(localStorage.getItem("project_name"));
+    
 
     const [Form, setForm] = useState(0)
 
     const FormDisplay = () => {
         if (Form == 1) {
-            return <Form_SG />
+            return <Form_VNET />
         }
     }
 
@@ -26,15 +27,15 @@ export default function Form_RG() {
     function cadastrarRGroup(evento) {
         evento.preventDefault();
         // 35.174.249.35:8000
-        axios.post("http://localhost:8000/api/resource_group/", {
+        axios.post("http://35.174.249.35:8000/api/resource_group/", {
             rg: {
                 name: nomeGR,
                 location: regiao
             },
             project: {
                 // localStorage.getItem("username")
-                username: username,
-                project_name: project_name
+                username: localStorage.getItem("username"),
+                project_name: localStorage.getItem("project_name")
             }
 
         }, {
@@ -48,6 +49,7 @@ export default function Form_RG() {
                     // return({ message: 'Projeto criado com sucesso!' });
                     toast.success("Grupo de Recurso cadastrado com sucesso!")
                     console.log('rg cadastrado');
+                    localStorage.setItem('NomeRG',nomeGR)
                     setForm((form) => form + 1)
                 }
             }).catch(erro => console.log(erro),)

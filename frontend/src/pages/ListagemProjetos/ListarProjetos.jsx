@@ -25,8 +25,8 @@ const style = {
 function TelaProjetos() {
     const [ListaProjetos, setListaProjetos] = useState([""])
     const [Excluir, setExcluir] = useState('')
-    const [username, setUsername] = useState(localStorage.getItem("username"));
-    const [project_name, setNomeprojeto] = useState(localStorage.getItem("project_name"));
+    const [username, setUsername] = useState(localStorage.getItem('username'));
+    const [project_name, setNomeprojeto] = useState('');
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -45,15 +45,17 @@ function TelaProjetos() {
     // const NavegateCreate = useNavigate();
     const JWT_Decode= useState();
 
-
+    
+   
+   
 
     
     
 
     // ///////////////////////////////////////////////////////////////////////////////////////
     function buscarMeusProjetos() {
-        // axios.get("http://localhost:8000/api/get_projects/" + username + "/", {
-        axios.get("http://35.174.249.35:8000/api/get_projects/" + username + "/", {
+        axios.get("http://35.174.249.35:8000/api/get_projects/" + localStorage.getItem("username") + "/", {
+        // axios.get("http://localhost:8000/api/get_projects/" + localStorage.getItem("username") + "/", {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
             }
@@ -86,10 +88,8 @@ function TelaProjetos() {
                     toast.success("Projeto cadastrado com sucesso!")
                     console.log("projeto cadastrado");
                     setUsername([]);
-                    setNomeprojeto([]);
+                    setNomeprojeto('');
                     window.location.reload();
-                    // setListaProjetos(ListaProjetos);
-                    
                     // navigate('/criar_recursos', { state: { message: 'Projeto criado com sucesso!' } })
                 }
             }).catch(erro => console.log(erro))
@@ -97,8 +97,8 @@ function TelaProjetos() {
 
     function DeletarProjeto(evento) {
         evento.preventDefault();
-        axios.delete("http://35.174.249.35:8000/api/delete_project/" + username + "/" + project_name + "/",{
-        // axios.delete("http://localhost:8000/api/delete_project/" + username + "/" + project_name + "/",{
+        // axios.delete("http://localhost:8000/api/delete_project/"  + localStorage.getItem("username") + "/" + project_name,{
+        axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + localStorage.getItem('project_name')+ "/",{
             // {
             //     username: username,
             //     project_name: project_name   
@@ -111,10 +111,7 @@ function TelaProjetos() {
                 if (resposta.status === 200) {
                     toast.success("Projeto deletado!")
                     console.log('projeto deletado');
-                    setUsername('');
-                    setNomeprojeto('');
                     window.location.reload();
-                    // setListaProjetos(ListaProjetos);
                 }
             }).catch(erro => console.log(erro))
     }
@@ -124,7 +121,7 @@ function TelaProjetos() {
         axios.put("http://35.174.249.35:8000/api/edit_existing_project/" ,
             {
                 username: username,
-                project_name: project_name   
+                project_name: localStorage.getItem('project_name')  
             }, 
             {
                 headers: {
@@ -136,17 +133,18 @@ function TelaProjetos() {
                     // localStorage.setItem('project_name', project_name );
                     console.log('Editando Projeto');
                     navigate("/criar_recursos")
+                    window.location.reload();
                 }
             }).catch(erro => console.log(erro))
 
     }
 
 
-    const Navigate = (event) => {
-        event.preventDefault();
+    // const Navigate = (event) => {
+    //     event.preventDefault();
         
 
-    }
+    // }
    
 
     return (

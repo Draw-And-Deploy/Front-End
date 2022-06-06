@@ -5,7 +5,9 @@ import Login from "./pages/login/Login"
 import TelaProjetos from "./pages/ListagemProjetos/ListarProjetos"
 import reportWebVitals from "./reportWebVitals";
 import CriarRecurso from "./pages/CadastroServicos/criarRecursos";
-
+import Form_RG from "./components/Formularios/form_rg";
+import Form_SG from "./components/Formularios/form_sg";
+import Form_VNET from "./components/Formularios/form_vnet";
 
 
 
@@ -17,6 +19,13 @@ root.render(
         <Route path="/" element={<Login />}/>
         <Route path="/meus_projetos" element={<TelaProjetos />}/>
         <Route path="/criar_recursos" element={<CriarRecurso />}/>
+
+        {/* Formularios */}
+        <Route path="/FormRG" element={<Form_RG />}/>
+        <Route path="/FormSG" element={<Form_SG />}/>
+        <Route path="/FormVNET" element={<Form_VNET />}/>
+        
+        {/* Formularios */}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -1,4 +1,5 @@
 // import banner from "./pages/login/img/banner_login2.svg";
+import * as React from 'react';
 import '../../assets/css/pages/style.css'
 import { useNavigate } from 'react-router-dom';
 import { useState } from "react";
@@ -9,7 +10,7 @@ import img_login from '../../assets/img/logo_black.svg'
 import img_login2 from '../../assets/img/undraw_cloud_files_wmo8.svg'
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css'; 
+import 'react-toastify/dist/ReactToastify.min.css';
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { IconButton } from '@mui/material';
@@ -30,7 +31,6 @@ function Login() {
 
   
   const [Email, setEmail] = useState('')
-  const [Senha, setSenha] = useState('')
   const [username, setUsername] = useState('')
   const  [Jwt_Decode, jwt7]= useState('')
   const [loading, setLoading] = useState(false)
@@ -41,7 +41,7 @@ function Login() {
 
 
   const [values, setValues] = useState({
-    password: Senha,
+    password: '',
     showPassword: false,
   });
 
@@ -64,8 +64,7 @@ function Login() {
 
     axios.post("http://localhost:8080/api/create_user/", {
       username: username
-      // username: username,
-      // project_name: project_name
+
     }, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -75,8 +74,7 @@ function Login() {
         if (resposta.status === 200) {
           console.log("User cadastrado");
           setUsername("");
-          // setUsername([]);
-          // setNomeprojeto([]);
+
         }
       }).catch(erro => console.log(erro))
 
@@ -93,13 +91,14 @@ function Login() {
         toast.success("Um email de verificação foi enviado para o seu email! Verifique para poder realizar o login!")
         console.log(data)
         setEmail('')
-        setSenha('')
+
         setUsername('')
         setLoading(false)
 
 
 
       }
+
     })
   };
 
@@ -139,7 +138,7 @@ function Login() {
         setLoading(false)
         // navigate("/main")
         console.log("newPasswordRequired: ", data);
-    },
+      },
 
 
     });
@@ -166,6 +165,9 @@ function Login() {
   };
 
 
+
+
+
   return (
     <>
       <div className={Animaition ? 'container sign-up-mode' : 'container '}   >
@@ -188,7 +190,6 @@ function Login() {
                   endAdornment={
                     <InputAdornment position="end">
                       <IconButton
-
                         onClick={handleClickShowPassword}
                         onMouseDown={handleMouseDownPassword}
                       >
@@ -198,14 +199,14 @@ function Login() {
                   }
                 />
               </div>
-              
+
               {
-                loading === true && <button type="submit" className="btn solid">Login</button> 
+                loading === true && <button type="submit" className="btn solid">Login</button>
               }
               {
-                loading === false && <button type="submit"  className="btn solid" onClick={EfetuarLogin}>Login</button>
+                loading === false && <button type="submit" className="btn solid" onClick={EfetuarLogin}>Login</button>
               }
-              <ToastContainer/>
+              <ToastContainer />
             </form>
             <form action="#" className="sign-up-form" onSubmit={Cadastrar} >
               <h2 className="title">Cadastrar-se</h2>
@@ -258,7 +259,7 @@ function Login() {
           <div className="panel left-panel">
             <div className="content">
               <h3>Novo aqui ?</h3>
-              <p>          
+              <p>
                 Cadastre seu usuário para começar a realizar seus projetos!
               </p>
               <button onClick={addClass} className='btn transparent' id="sign-up-btn">

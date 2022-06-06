@@ -28,20 +28,20 @@ const tamanhos = [
         label: 'Standard_D4s_v3',
     },
     {
-        value: 'BTC',
+        value: 'BTA',
         label: 'Standard_E2s_v3',
     },
 ];
 
 
 export default function Form_VMW() {
-    const [nomeGR, setNomeGR] = useState('');
-    const [username, setUsername] = useState(localStorage.getItem("username"));
-    const [project_name, setNomeprojeto] = useState(localStorage.getItem("project_name"));
-    const [nomeSeguranca, setNomeSeguranca] = useState('');
+    const [nomeGR, setNomeGR] = useState(localStorage.getItem('NomeRG'));
+    const [username, setUsername] = useState(localStorage.getItem('username'));
+    const [project_name, setNomeprojeto] = useState('');
+    const [nomeSeguranca, setNomeSeguranca] = useState(localStorage.getItem('Grupo_de_segurança'));
     const [senha, setSenha] = useState('');
     const [hostname, setHostname] = useState('');
-    const [user_name, setUser_name] = useState('');
+    const [user_name, setUser_name] = useState(localStorage.getItem('username'));
     const [nomeVM, setNomeVM] = useState('');
     const [tamanhoVM, setTamanhoVM] = useState('');
     const [nomeSubRede, setNomeSubRede] = useState('');
@@ -61,7 +61,7 @@ export default function Form_VMW() {
     //VIRTUAL MACHINE LINUX
     function cadastrarVirtualMachineLinux(evento) {
         evento.preventDefault();
-        axios.post("http://localhost:8000/api/linux_virtual_machine/", {
+        axios.post("http://35.174.249.35:8000/api/linux_virtual_machine/", {
 
             vm: {
                 name: nomeVM,
@@ -73,8 +73,8 @@ export default function Form_VMW() {
                 username: user_name,
             },
             project: {
-                username: username,
-                project_name: project_name
+                username: localStorage.getItem("username"),
+                project_name: localStorage.getItem('project_name')
             }
 
         }, {
@@ -85,15 +85,8 @@ export default function Form_VMW() {
             .then(resposta => {
                 if (resposta.status === 200) {
                     toast.success("Virtual Machine Linux cadastrada com sucesso!")
-                    console.log('VM cadastrada');
-                    setNomeVM('');
-                    setNomeGR(nomeGR);
-                    setNomeSeguranca(nomeSeguranca);
-                    setNomeSubRede(nomeSubRede);
-                    setTamanhoVM('');
-                    setUser_name('');
-                    setUsername('');
-                    setNomeprojeto('');
+                    console.log('VMW cadastrada');
+                    
                 }
             }).catch(erro => console.log(erro))
     }
@@ -101,7 +94,7 @@ export default function Form_VMW() {
     //VIRTUAL MACHINE Windows
     function cadastrarVirtualMachineWindows(evento) {
         evento.preventDefault();
-        axios.post("http://localhost:8000/api/windows_virtual_machine/", {
+        axios.post("http://35.174.249.35:8000/api/windows_virtual_machine/", {
 
             vm: {
                 name: nomeVM,
@@ -114,8 +107,8 @@ export default function Form_VMW() {
                 hostname: hostname
             },
             project: {
-                username: username,
-                project_name: project_name
+                username: localStorage.getItem("username"),
+                project_name: localStorage.getItem('project_name'),
             }
 
         }, {
@@ -127,23 +120,14 @@ export default function Form_VMW() {
                 if (resposta.status === 200) {
                     toast.success("Virtual Machine Windows cadastrada com sucesso!")
                     console.log('VMW cadastrada');
-                    setNomeVM('');
-                    setNomeGR(nomeGR);
-                    setNomeSeguranca(nomeSeguranca);
-                    setNomeSubRede(nomeSubRede);
-                    setTamanhoVM('');
-                    setUser_name('');
-                    setHostname('');
-                    setUsername('');
-                    setNomeprojeto('');
-                    setSenha('');
+                    
                 }
             }).catch(erro => console.log(erro))
     }
 
     function Apply(evento) {
         evento.preventDefault();
-        axios.post("http://localhost:8000/api/apply/", {
+        axios.post("http://35.174.249.35:8000/api/apply/", {
             username: username,
             project_name: project_name
         }, {
@@ -291,6 +275,7 @@ export default function Form_VMW() {
                                         <div className="btn_WL">
                                             <input className="btnProxU" type="submit" value="Linux !" onClick={LinuxTrue} />
                                             <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineWindows} />
+                                            <input className="btnProxU" type="submit" value='Apply' />
                                         </div>
                                         <ToastContainer />
                                     </form>

@@ -15,8 +15,8 @@
     width: 95%;
     border-radius: 100px;
     display: flex;
-    justify-content:center;
-    margin-top: 12px;
+    justify-content: center;
+    margin-top: 100px;
     box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
 }
 
@@ -27,7 +27,7 @@
     border-radius: 100px;
     display: flex;
     justify-content: center;
-    margin-top: 24%;
+    margin-top: 9%;
     box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
 }
 
@@ -60,10 +60,10 @@
     display: flex;
     justify-content: center;
     margin-top: 24%;
-   box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+    box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
 }
 
-.right_stage{
+.right_stage {
     width: 50%;
     display: flex;
     align-items: center;
@@ -71,6 +71,7 @@
     flex-direction: column;
     background-color: white;
 }
+
 .left_stage {
     width: 50%;
     display: flex;
@@ -78,13 +79,13 @@
     align-items: center;
 }
 
-.left_stage img{
+.left_stage img {
     width: 52vw;
     height: 52vh;
-    
+
 }
 
-.input_field{
+.input_field {
     border-radius: 92px;
     width: 100%;
 }
@@ -93,40 +94,29 @@
     .Stage_form_VM {
         background: #0188DF;
         height: 167vh;
-        width: 180%;
+        width: 100%;
         border-radius: 1px;
         display: flex;
         justify-content: center;
         margin-top: 24%;
-       box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+        box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
     }
 
     .Stage_form_RG {
         background: #0188DF;
         height: 560px;
-        width: 180%;
-        border-radius: 1px;
-        display: flex;
-        justify-content:center;
-        margin-top: 12px;
-        box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
-    }
-    
-    .Stage_form_VNET {
-        background: #0188DF;
-        height: 164vh;
-        width: 180%;
+        width: 100%;
         border-radius: 1px;
         display: flex;
         justify-content: center;
-        margin-top: 24%;
+        margin-top: 12px;
         box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
     }
-    
-    .Stage_form_SG {
+
+    .Stage_form_VNET {
         background: #0188DF;
-        height: 140vh;
-        width: 180%;
+        height: 164vh;
+        width: 100%;
         border-radius: 1px;
         display: flex;
         justify-content: center;
@@ -134,20 +124,32 @@
         box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
     }
 
-    .imgProjeto img{
+    .Stage_form_SG {
+        background: #0188DF;
+        height: 140vh;
+        width: 100%;
+        border-radius: 1px;
+        display: flex;
+        justify-content: center;
+        margin-top: 24%;
+        box-shadow: 0px 4px 4px rgba(0.25, 0.25, 0.25, 0.25);
+    }
+
+    .imgProjeto img {
         width: 80px;
         height: 80px;
     }
-    .imgProjeto{
+
+    .imgProjeto {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .left_stage img{
+    .left_stage img {
         width: 86%;
         height: 52vh;
     }
 
-     
+
 }

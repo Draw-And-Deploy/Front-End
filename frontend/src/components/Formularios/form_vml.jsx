@@ -32,9 +32,9 @@ const tamanhos = [
 
 
 export default function Form_VML() {
-    const [nomeGR, setNomeGR] = useState('');
-    const [username, setUsername] = useState('Carlos');
-    const [project_name, setNomeprojeto] = useState('querotever');
+    const [nomeGR, setNomeGR] = useState(localStorage.getItem('NomeRG'));
+    const [username, setUsername] = useState('');
+    const [project_name, setNomeprojeto] = useState('');
     const [nomeSeguranca, setNomeSeguranca] = useState('');
     const [senha, setSenha] = useState('');
     const [hostname, setHostname] = useState('');
@@ -50,7 +50,7 @@ export default function Form_VML() {
     function cadastrarVirtualMachineLinux(evento) {
         evento.preventDefault();
         // axios.post("http://35.174.249.35:8000/api/linux_virtual_machine/", {
-        axios.post("http://localhost:8000/api/linux_virtual_machine/", {
+        axios.post("http://35.174.249.35:8000/api/linux_virtual_machine/", {
 
             vm: {
                 name: nomeVM,
@@ -62,8 +62,8 @@ export default function Form_VML() {
                 username: user_name,
             },
             project: {
-                username: username,
-                project_name: project_name
+                username: localStorage.getItem("username"),
+                project_name: localStorage.getItem('project_name')
             }
 
         }, {
@@ -74,15 +74,8 @@ export default function Form_VML() {
             .then(resposta => {
                 if (resposta.status === 200) {
                     toast.success("Virtual Machine Linux cadastrada com sucesso!")
-                    console.log('VM cadastrada');
-                    setNomeVM('');
-                    setNomeGR(nomeGR);
-                    setNomeSeguranca(nomeSeguranca);
-                    setNomeSubRede(nomeSubRede);
-                    setTamanhoVM('');
-                    setUser_name('');
-                    setUsername('');
-                    setNomeprojeto('');
+                    console.log('VML cadastrada');
+                   
                 }
             }).catch(erro => console.log(erro))
     }

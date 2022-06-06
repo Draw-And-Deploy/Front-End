@@ -187,10 +187,34 @@ h7 {
 
 .div_apply {
     width: 100%;
-    height: 24vh;
+    margin-right: 64%;
     display: flex;
     align-items: center;
     justify-content: center;
     justify-content: space-between;
     flex-direction: column;
+}
+
+.btn_script {
+    display: flex;
+    width: 593%;
+    height: 10vh;
+    justify-content: center;
+}
+
+.Script_E {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5%;
+    margin-top: 4%;
+    flex-direction: column;
+}
+
+.Container_Modal_S {
+    width: 100%;
+}
+
+.ver_script {
+    width: 100%;
+    height: 10vh;
 }

@@ -10,7 +10,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import Header from '../../components/header/header'
 import { useNavigate } from 'react-router-dom';
-
+import Modal from 'react-modal/lib/components/Modal';
 
 
 
@@ -47,7 +47,7 @@ export default function Form_VMW() {
     const [nomeSubRede, setNomeSubRede] = useState('');
     const [usuario, setUsuario] = useState('');
     const [linux, setlinux] = useState(false);
-    const [public_key, setPublicKey] = useState('');
+    const [Link, setLink] = useState({});
 
 
 
@@ -68,7 +68,6 @@ export default function Form_VMW() {
                 rg: nomeGR,
                 nsg: nomeSeguranca,
                 subnet: nomeSubRede,
-                public_key: public_key,
                 size: tamanhoVM,
                 username: user_name,
             },
@@ -84,9 +83,10 @@ export default function Form_VMW() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
-                    toast.success("Virtual Machine Linux cadastrada com sucesso!")
+                    setLink(resposta.data);
+                    toast.success("Virtual Machine Linux cadastrada com sucesso!");
                     console.log('VMW cadastrada');
-                    
+
                 }
             }).catch(erro => console.log(erro))
     }
@@ -120,7 +120,7 @@ export default function Form_VMW() {
                 if (resposta.status === 200) {
                     toast.success("Virtual Machine Windows cadastrada com sucesso!")
                     console.log('VMW cadastrada');
-                    
+
                 }
             }).catch(erro => console.log(erro))
     }
@@ -212,19 +212,23 @@ export default function Form_VMW() {
                                                 </MenuItem>
                                             ))}
                                         </TextField>
-
-                                        <label className="label" for="userName"></label>
-                                        <TextField id="userName" className="input_field" label="Chave Pública" type="text" placeholder="Insira a chave pública" value={public_key} onChange={(event) => setPublicKey(event.target.value)} />
                                         <label className="label" for="userName"></label>
                                         <TextField id="userName" className="input_field" label='Nome do Usuário' type="text" placeholder="Insira o nome do Usuário" value={usuario} onChange={(event) => setUsuario(event.target.value)} />
+
+
                                         <div className="btn_WL">
                                             <input className="btnProxU" type="submit" value="Windows !" onClick={LinuxFalse} />
                                             <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineLinux} />
                                         </div>
+
                                         <ToastContainer />
                                     </form>
+
                                 </div>
 
+                                <div>
+                                    <span > <a href={Link.Link}> {Link.Link}</a> </span>
+                                </div>
                             </div>
                         </div>
                         :

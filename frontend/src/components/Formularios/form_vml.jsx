@@ -41,9 +41,10 @@ export default function Form_VML() {
     const [user_name, setUser_name] = useState('');
     const [nomeVM, setNomeVM] = useState('');
     const [tamanhoVM, setTamanhoVM] = useState('');
-    const [public_key, setPublicKey] = useState('');
     const [nomeSubRede, setNomeSubRede] = useState('');
     const [usuario, setUsuario] = useState('');
+    const [Link, setLink] = useState({});
+
 
 
     //VIRTUAL MACHINE
@@ -57,7 +58,6 @@ export default function Form_VML() {
                 rg: nomeGR,
                 nsg: nomeSeguranca,
                 subnet: nomeSubRede,
-                public_key: public_key,
                 size: tamanhoVM,
                 username: user_name,
             },
@@ -73,6 +73,7 @@ export default function Form_VML() {
         })
             .then(resposta => {
                 if (resposta.status === 200) {
+                    setLink(resposta.data)
                     toast.success("Virtual Machine Linux cadastrada com sucesso!")
                     console.log('VML cadastrada');
                    
@@ -163,13 +164,10 @@ export default function Form_VML() {
                                 </MenuItem>
                             ))}
                         </TextField>
-
-                        <label className="label" for="userName"></label>
-                        <TextField id="userName" className="input_field" label="Chave Pública" type="text" placeholder="Insira a chave pública" value={public_key} onChange={(event) => setPublicKey(event.target.value)} />
                         <label className="label" for="userName"></label>
                         <TextField id="userName" className="input_field" label='Nome do Usuário' type="text" placeholder="Insira o nome do Usuário" value={usuario} onChange={(event) => setUsuario(event.target.value)} />
                         <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineLinux} />
-
+                        <span > <a href={URL.Link}> {URL.Link}</a> </span>
                         <ToastContainer/>
                     </form>
                 </div>

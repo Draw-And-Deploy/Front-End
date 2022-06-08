@@ -207,7 +207,7 @@ export default function Form_SG() {
                                             placeholder="000.000.000.000/00"
                                             value={trafegoOrigem} onChange={(event) => setTrafegoOrigem(event.target.value)} />
                                         {/* <input className="btnVoltar" type="submit" value="Voltar" /> */}
-                                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarGrupoSeguranca} />
+                                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={   } />
                                         <ToastContainer />
                                     </form>
                                 </div>

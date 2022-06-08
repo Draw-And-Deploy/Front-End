@@ -68,7 +68,7 @@ function TelaProjetos() {
     }
 
     useEffect(buscarMeusProjetos, [], "");
-
+ 
     function cadastrarProjetos(evento) {
         handleClose()
         evento.preventDefault();

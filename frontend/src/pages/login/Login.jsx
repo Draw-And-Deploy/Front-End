@@ -62,7 +62,7 @@ function Login() {
   const Cadastrar = (event) => {
     event.preventDefault();
 
-    axios.post("http://localhost:8080/api/create_user/", {
+    axios.post("http://35.174.249.35:8000/api/create_user/", {
       username: username
 
     }, {
@@ -72,6 +72,7 @@ function Login() {
     })
       .then(resposta => {
         if (resposta.status === 200) {
+          toast.success('api funfas username')
           console.log("User cadastrado");
           setUsername("");
 

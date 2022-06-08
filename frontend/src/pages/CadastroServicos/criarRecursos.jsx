@@ -34,7 +34,7 @@ const style = {
 };
 
 export default function CriarRecurso() {
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(localStorage.getItem('username'));
     const [project_name, setNomeprojeto] = useState(localStorage.getItem('project_name'));
     const [URL, setURL] = useState({});
 
@@ -61,17 +61,17 @@ export default function CriarRecurso() {
     const [student, setStudent] = useState(true)
 
 
-    useEffect(() => {
-        CredenciaishandleOpen();
-    }, [])
+    // useEffect(() => {
+    //     CredenciaishandleOpen();
+    // }, [])
 
 
     function CredenciaisUserAzure(evento) {
 
         evento.preventDefault();
         CredenciaishandleClose();
-        // axios.post("http://35.174.249.35:8000/api/account_credentials/", {
-        axios.post("http://localhost:8000/api/account_credentials/", {
+        axios.post("http://35.174.249.35:8000/api/account_credentials/", {
+        // axios.post("http://localhost:8000/api/account_credentials/", {
 
             useracc: {
                 user_email: Email_Aws,
@@ -94,12 +94,9 @@ export default function CriarRecurso() {
                 if (resposta.status === 200) {
                     console.log('Credenciais cadastradas');
                     setUsername('');
-                    setNomeprojeto('');
-                    // setNomeRede('');
-                    // setNomeGR('');
-                    // setUsername('');
-                    // setNomeprojeto('');
-                    // setBlocoIP('');
+                    setNomeprojeto('');                    
+                    setEmail_Aws('');
+                    setSenha_Aws('');
                 }
             }).catch(erro => console.log(erro))
     }
@@ -134,11 +131,10 @@ export default function CriarRecurso() {
                     console.log('Cre_DAS_TRA_DO');
                     setUsername('');
                     setNomeprojeto('');
-                    // setNomeRede('');
-                    // setNomeGR('');
-                    // setUsername('');
-                    // setNomeprojeto('');
-                    // setBlocoIP('');
+                    setSubcripitionId('');
+                    setClientId('');
+                    setClient_Secret('');
+                    setTenantId('');
                 }
             }).catch(erro => console.log(erro))
     }
@@ -166,6 +162,27 @@ export default function CriarRecurso() {
                     // console.log(listaConsultas)
                 }
             }).catch(erro => console.log(erro));
+    }
+
+    function Apply(evento) {
+        evento.preventDefault();
+        axios.post("http://35.174.249.35:8000/api/apply/", {
+            username: username,
+            project_name: project_name
+        }, {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
+            }
+        })
+            .then(resposta => {
+                if (resposta.status === 200) {
+                    toast.success("Apply feito com sucesso!");
+                    console.log('apply feita com sucesso');
+                    setUsername('');
+                    setNomeprojeto('');
+                    window.location.reload();
+                }
+            }).catch(erro => console.log(erro))
     }
 
 
@@ -274,7 +291,10 @@ export default function CriarRecurso() {
                     <div className='div_apply'>
                         <div className='link_apply'>
                             <div className='div_apply'>
-                                <button className='M_P_Button' onClick={handleOpen}>Ver Script</button>
+                                <button className='M_P_Button_avs' onClick={handleOpen}>Ver Script</button>
+                                <button className='M_P_Button_avs' onClick={CredenciaishandleOpen}>Credenciais</button>
+                                <input className="M_P_Button_avs" type="submit" value='Apply' onClick={Apply} />
+                                <ToastContainer/>
                             </div>
 
 

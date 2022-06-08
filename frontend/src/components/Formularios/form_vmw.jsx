@@ -37,7 +37,7 @@ const tamanhos = [
 export default function Form_VMW() {
     const [nomeGR, setNomeGR] = useState(localStorage.getItem('NomeRG'));
     const [username, setUsername] = useState(localStorage.getItem('username'));
-    const [project_name, setNomeprojeto] = useState('');
+    const [project_name, setNomeprojeto] = useState(localStorage.getItem('project_name'));
     const [nomeSeguranca, setNomeSeguranca] = useState(localStorage.getItem('Grupo_de_segurança'));
     const [senha, setSenha] = useState('');
     const [hostname, setHostname] = useState('');
@@ -125,24 +125,7 @@ export default function Form_VMW() {
             }).catch(erro => console.log(erro))
     }
 
-    function Apply(evento) {
-        evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/apply/", {
-            username: username,
-            project_name: project_name
-        }, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
-            }
-        })
-            .then(resposta => {
-                if (resposta.status === 200) {
-                    console.log('apply feita com sucesso');
-                    setUsername('');
-                    setNomeprojeto('');
-                }
-            }).catch(erro => console.log(erro))
-    }
+
     // function DeletarProjeto(evento) {
     //     evento.preventDefault();
     //     axios.delete("http://35.174.249.35:8000/api/destroy/" + username + "/" + project_name + "/",
@@ -217,11 +200,7 @@ export default function Form_VMW() {
                                         </TextField>
                                         <label className="label" for="userName"></label>
                                         <TextField id="userName" className="input_field" label='Nome do Usuário' type="text" placeholder="Insira o nome do Usuário" value={usuario} onChange={(event) => setUsuario(event.target.value)} />
-
-
-                                        <div className="btn_WL">
                                             <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineLinux} />
-                                        </div>
 
                                         <ToastContainer />
                                     </form>
@@ -229,7 +208,7 @@ export default function Form_VMW() {
                                 </div>
 
                                 <div>
-                                     <a href={Link.Link}> {Link.Link}</a> 
+                                    <a href={Link.Link}> {Link.Link}</a>
                                 </div>
                             </div>
                         </div>
@@ -281,10 +260,9 @@ export default function Form_VMW() {
                                         <TextField id="senha" className="inputfield" label='Senha do Usuário' type="password" placeholder="Insira a Senha do Usuário" value={senha} onChange={(event) => setSenha(event.target.value)} />
                                         <label className="label" for="hostname"></label>
                                         <TextField id="hostname" className="inputfield" label='Hostname' type="text" placeholder="Insira o Hostname da VM" value={hostname} onChange={(event) => setHostname(event.target.value)} />
-                                        <div className="btn_WL">
-                                            <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineWindows} />
-                                            <input className="btnProxU" type="submit" value='Apply' />
-                                        </div>
+
+                                        <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineWindows} />
+
                                         <ToastContainer />
                                     </form>
                                 </div>

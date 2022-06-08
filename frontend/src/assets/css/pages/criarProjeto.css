@@ -207,12 +207,10 @@ h7 {
 
 .div_apply {
     width: 100%;
-    margin-right: 64%;
+    margin-right: 52%;
     display: flex;
     align-items: center;
     justify-content: center;
-    justify-content: space-between;
-    flex-direction: column;
 }
 
 .btn_script {

@@ -60,6 +60,23 @@
     margin-top: 10%;
     border-radius: 25px;
 }
+.M_P_Button_avs {
+    width: 21%;
+    background-color: #0188DF;
+    border: none;
+    outline: none;
+    height: 49px;
+    /* border-radius: 49px; */
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-left: 8%;
+    margin-top: 10%;
+    border-radius: 25px;
+}
 
 .M_P_Button:hover {
     background-color: #0e73b6;

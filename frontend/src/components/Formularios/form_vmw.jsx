@@ -16,19 +16,19 @@ import Modal from 'react-modal/lib/components/Modal';
 
 const tamanhos = [
     {
-        value: 'USD',
+        value: 'Standard_DS1_v2',
         label: 'Standard_DS1_v2',
     },
     {
-        value: 'EUR',
+        value: 'Standard_D2s_v3',
         label: 'Standard_D2s_v3',
     },
     {
-        value: 'BTC',
+        value: 'Standard_D4s_v3',
         label: 'Standard_D4s_v3',
     },
     {
-        value: 'BTA',
+        value: 'Standard_E2s_v3',
         label: 'Standard_E2s_v3',
     },
 ];
@@ -69,7 +69,7 @@ export default function Form_VMW() {
                 nsg: nomeSeguranca,
                 subnet: nomeSubRede,
                 size: tamanhoVM,
-                username: user_name,
+                username: usuario,
             },
             project: {
                 username: localStorage.getItem("username"),
@@ -102,7 +102,7 @@ export default function Form_VMW() {
                 nsg: nomeSeguranca,
                 subnet: nomeSubRede,
                 size: tamanhoVM,
-                username: user_name,
+                username: usuario,
                 password: senha,
                 hostname: hostname
             },
@@ -188,6 +188,9 @@ export default function Form_VMW() {
                                     <div className="titulo">
                                         <h6>Virtual Machine (Linux)</h6>
                                     </div>
+                                    <div className='div_troca'>
+                                        <input className="btnProx_VM" type="submit" value="VM Windows" onClick={LinuxFalse} />
+                                    </div>
                                     <form method='post'>
                                         <label className="label" for="selecionaGR_VM"></label>
                                         <TextField id="selecionaGR_VM" className="input_field" label='Grupo de Recurso ' list="listaGR" placeholder="Nome do Grupo de Recursos" value={nomeGR} onChange={(event) => setNomeGR(event.target.value)} />
@@ -217,7 +220,6 @@ export default function Form_VMW() {
 
 
                                         <div className="btn_WL">
-                                            <input className="btnProxU" type="submit" value="Windows !" onClick={LinuxFalse} />
                                             <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineLinux} />
                                         </div>
 
@@ -227,7 +229,7 @@ export default function Form_VMW() {
                                 </div>
 
                                 <div>
-                                    <span > <a href={Link.Link}> {Link.Link}</a> </span>
+                                     <a href={Link.Link}> {Link.Link}</a> 
                                 </div>
                             </div>
                         </div>
@@ -244,6 +246,9 @@ export default function Form_VMW() {
                                 <div>
                                     <div className="titulo">
                                         <h6>Virtual Machine (Windows)</h6>
+                                    </div>
+                                    <div className='div_troca'>
+                                        <input className="btnProx_VM" type="submit" value="VM Linux" onClick={LinuxTrue} />
                                     </div>
                                     <form method='post'>
                                         <label className="label" for="selecionaGR_VM"></label>
@@ -277,7 +282,6 @@ export default function Form_VMW() {
                                         <label className="label" for="hostname"></label>
                                         <TextField id="hostname" className="inputfield" label='Hostname' type="text" placeholder="Insira o Hostname da VM" value={hostname} onChange={(event) => setHostname(event.target.value)} />
                                         <div className="btn_WL">
-                                            <input className="btnProxU" type="submit" value="Linux !" onClick={LinuxTrue} />
                                             <input className="btnProxU" type="submit" value="Cadastrar" onClick={cadastrarVirtualMachineWindows} />
                                             <input className="btnProxU" type="submit" value='Apply' />
                                         </div>

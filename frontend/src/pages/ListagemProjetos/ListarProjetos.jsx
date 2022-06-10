@@ -54,7 +54,7 @@ function TelaProjetos() {
 
     // ///////////////////////////////////////////////////////////////////////////////////////
     function buscarMeusProjetos() {
-        axios.get("http://35.174.249.35:8000/api/get_projects/" + localStorage.getItem("username") + "/", {
+        axios.get("https://api.drawanddeploy.com:8000/api/get_projects/" + localStorage.getItem("username") + "/", {
         // axios.get("http://localhost:8000/api/get_projects/" + localStorage.getItem("username") + "/", {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -75,7 +75,7 @@ function TelaProjetos() {
         handleClose()
         evento.preventDefault();
         // axios.post("http://localhost:8000/api/create_project/", {
-        axios.post("http://35.174.249.35:8000/api/create_project/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/create_project/", {
             username: username,
             project_name: project_name 
         }, {
@@ -98,7 +98,7 @@ function TelaProjetos() {
     function DeletarProjeto(evento) {
         evento.preventDefault();
         // axios.delete("http://localhost:8000/api/delete_project/"  + localStorage.getItem("username") + "/" + project_name,{
-        axios.delete("http://35.174.249.35:8000/api/delete_project/" + localStorage.getItem("username") + "/" + localStorage.getItem('project_name')+ "/",{
+        axios.delete("https://api.drawanddeploy.com:8000/api/delete_project/" + localStorage.getItem("username") + "/" + localStorage.getItem('project_name')+ "/",{
             // {
             //     username: username,
             //     project_name: project_name   
@@ -118,7 +118,7 @@ function TelaProjetos() {
 
     function EditarProjeto(evento) {
         evento.preventDefault();
-        axios.put("http://35.174.249.35:8000/api/edit_existing_project/" ,
+        axios.put("https://api.drawanddeploy.com:8000/api/edit_existing_project/" ,
             {
                 username: username,
                 project_name: localStorage.getItem('project_name')  

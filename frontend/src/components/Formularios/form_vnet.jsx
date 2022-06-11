@@ -68,7 +68,7 @@ export default function Form_VNET() {
     function cadastrarVnet(evento) {
 
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/virtual_network/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/virtual_network/", {
 
             vnet: {
                 name: nomeRede,
@@ -96,7 +96,7 @@ export default function Form_VNET() {
     function cadastrarSubrede(evento) {
 
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/subnet/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/subnet/", {
 
             subnet: {
                 name: nomeSubRede,

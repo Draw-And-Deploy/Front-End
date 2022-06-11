@@ -27,7 +27,7 @@ export default function Form_RG() {
     function cadastrarRGroup(evento) {
         evento.preventDefault();
         // 35.174.249.35:8000
-        axios.post("http://35.174.249.35:8000/api/resource_group/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/resource_group/", {
             rg: {
                 name: nomeGR,
                 location: regiao

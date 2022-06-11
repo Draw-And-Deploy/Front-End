@@ -51,7 +51,7 @@ export default function Form_VML() {
     function cadastrarVirtualMachineLinux(evento) {
         evento.preventDefault();
         // axios.post("http://35.174.249.35:8000/api/linux_virtual_machine/", {
-        axios.post("http://35.174.249.35:8000/api/linux_virtual_machine/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/linux_virtual_machine/", {
 
             vm: {
                 name: nomeVM,

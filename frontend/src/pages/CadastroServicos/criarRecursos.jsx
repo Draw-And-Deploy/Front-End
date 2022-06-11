@@ -70,7 +70,7 @@ export default function CriarRecurso() {
 
         evento.preventDefault();
         CredenciaishandleClose();
-        axios.post("http://35.174.249.35:8000/api/account_credentials/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/account_credentials/", {
         // axios.post("http://localhost:8000/api/account_credentials/", {
 
             useracc: {
@@ -107,7 +107,7 @@ export default function CriarRecurso() {
         evento.preventDefault();
         CredenciaishandleClose();
         // axios.post("http://35.174.249.35:8000/api/account_credentials/", {
-        axios.post("http://35.174.249.35:8000/api/account_credentials/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/account_credentials/", {
 
             useracc: {
                 // user_email: Email_Aws,
@@ -149,7 +149,7 @@ export default function CriarRecurso() {
 
 
     function VerScript() {
-        axios.get("http://35.174.249.35:8000/api/get_script/" + localStorage.getItem("username") + "/" + localStorage.getItem("project_name") + "/", {
+        axios.get("https://api.drawanddeploy.com:8000/api/get_script/" + localStorage.getItem("username") + "/" + localStorage.getItem("project_name") + "/", {
             // axios.get("http://localhost:8000/api/get_projects/" + localStorage.getItem("username") + "/", {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem('usuario-login')
@@ -166,7 +166,7 @@ export default function CriarRecurso() {
 
     function Apply(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/apply/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/apply/", {
             username: username,
             project_name: project_name
         }, {

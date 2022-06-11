@@ -79,7 +79,7 @@ export default function Form_SG() {
 
     function cadastrarGrupoSeguranca(evento) {
         evento.preventDefault();
-        axios.post("http://35.174.249.35:8000/api/security_group/", {
+        axios.post("https://api.drawanddeploy.com:8000/api/security_group/", {
 
             sg: {
                 name: nomeSeguranca,
